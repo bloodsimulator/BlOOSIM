@@ -229,15 +229,12 @@ html {
   height: 300px;
   
 }
-
 .fh5co-features-outer {
   width: 100%;
   height: auto;
-  margin-top: -100px;
 }
-
 .fh5co-features-outer .col-sm-6 img {
-  height: 550px;
+  height: 500px;
 }
 .fh5co-features-outer .sm-6-content {
   margin-top: 150px;
@@ -250,6 +247,7 @@ html {
   font-weight: 600;
   margin-bottom: 10px;
 }
+
 .fh5co-features-outer .sm-6-content p {
   color: #111;
   font-weight: 500;
@@ -257,6 +255,7 @@ html {
   line-height: 1.8em;
   width: 450px;
 }
+
 .fh5co-features-outer .col-sm-6 .col-sm-image-container {
   position: relative;
   top: 80px;
