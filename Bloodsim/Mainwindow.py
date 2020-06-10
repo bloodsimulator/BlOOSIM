@@ -816,7 +816,6 @@ class Ui_MainWindow(object):
             # TabOrder
             self.retranslateUi(MainWindow)
             QtCore.QMetaObject.connectSlotsByName(MainWindow)
-            
 
         def retranslateUi(self, MainWindow):
             self.pushButton_2.setText(self._translate("MainWindow", "CHAMBERS"))
@@ -2713,10 +2712,23 @@ class Ui_MainWindow(object):
             self.stn_dat = {'0': None, '1': None, '7': None, '13': None, '3': None, '11': None, '10': None, '51': None,
                             '46': None, '74': None, '56': None, '70': None, '62': None, '63': None, '108': None,
                             '109': None, '102': None, '107': None, '96': None, '92': None}
-
             self.c = 0
             self.cv = 0
             self.statusbar.showMessage('RESET', msecs=8000)
+            query = "Update CARDI set val = ? where id = ?"
+            
+            query_list = [(0.000016, 0), (2.5e-05, 1), (2.5e-05, 2), (0.000016, 3), \
+                        (0.06, 4), (0.3, 5), (0.9, 6), (30, 7), (100, 8), \
+                        (0.02, 9), (0.02, 10), (0.02, 11), (0.06, 12), (0.055, 13), \
+                        (0.06, 14), (0.52, 15), (0.043, 16), (0.07, 17), (0.0075, 18), (2.87, 19), \
+                        (0.0005, 20), (0.0005, 21), (0.0002, 22), (0.0002, 23), (0.0005, 24), \
+                        (0.0005, 25), (0.0005, 26), (0.0002, 27), (0.0005, 28), (0.005, 29), (0.0005, 30), \
+                        (0.007, 31), (0.001, 32), (0.005, 33), (0.005, 34), (0.04, 35), (0.04, 36), \
+                        (0.005, 37), (0.005, 38), (0.005, 39), (0.03, 40), (0.35, 41), \
+                        (0.01, 42), (0.01, 43), (0.0005, 44), (0.0005, 45), (0.01, 46), (0.01, 47), \
+                        (0.01, 48), (0.0005, 49), (0.0005, 50), (0.01, 51), (0.01, 52)]
+            execute_many_query(connection, query, query_list)
+
     except Exception as e:
         error = QtWidgets.QMessageBox()
         error.setWindowTitle('ERROR!!')
@@ -3568,10 +3580,11 @@ class Heart_para(object):
 
     def setupUi(self):
         self.widget_1.setObjectName("widget_1")
-        self.widget_1.resize(750, 458)
+        self.widget_1.resize(1000, 458)
+        self.widget_1.setMinimumSize(1000,458)
         self.widget_1.setStyleSheet("background-color: rgb(43, 80, 120);\n"
-                               "border-color: rgb(0,0,0);\n"
-                               "border-right-color: rgb(43, 80, 120);")
+                                    "border-color: rgb(0,0,0);\n"
+                                    "border-right-color: rgb(43, 80, 120);")
         self.gridLayout_2 = QtWidgets.QGridLayout(self.widget_1)
         self.gridLayout_2.setObjectName("gridLayout_2")
         # ____________________HEART PARA BUTTON OK______________________
@@ -3607,7 +3620,7 @@ class Heart_para(object):
         # ------------------------------MITRAL VALVE-----------------
         self.label_BR_MV = QtWidgets.QLabel(self.tab_0)
         self.label_BR_MV.setStyleSheet("font: 9pt \"MS Shell Dlg 2\";\n"
-                                       "color: rgb(255,255,255);")
+                                        "color: rgb(255,255,255);")
         self.label_BR_MV.setObjectName("label_BR_MV")
         self.gridLayout_4.addWidget(self.label_BR_MV, 1, 0, 1, 1)
 
@@ -3623,19 +3636,18 @@ class Heart_para(object):
         self.gridLayout_4.addWidget(self.checkBox_BR_MV, 1, 2, 1, 1)
         self.doubleSpinBox_BR_MV = QtWidgets.QDoubleSpinBox(self.tab_0)
         self.doubleSpinBox_BR_MV.setStyleSheet("background-color: rgb(35, 35, 35);\n"
-                                               "color: rgb(255, 210, 119);\n"
-                                               "selection-color: rgb(237, 85, 59);\n"
-                                               "selection-background-color: rgb(33, 57, 86);\n"
-                                               "\n"
-                                               "font: 11pt \"Calibri\";")
+                                                "color: rgb(255, 210, 119);\n"
+                                                "selection-color: rgb(237, 85, 59);\n"
+                                                "selection-background-color: rgb(33, 57, 86);\n"
+                                                "\n"
+                                                "font: 11pt \"Calibri\";")
         self.doubleSpinBox_BR_MV.setObjectName("doubleSpinBox_BR_MV")
         self.gridLayout_4.addWidget(self.doubleSpinBox_BR_MV, 1, 3, 1, 1)
 
         # -----------------------AORTIC VALVE--------------------------
         self.label_BR_AV = QtWidgets.QLabel(self.tab_0)
         self.label_BR_AV.setStyleSheet("font: 9pt \"MS Shell Dlg 2\";\n"
-                                       "color: rgb(255,255,255);\n"
-                                       "")
+                                        "color: rgb(255,255,255);\n")
         self.label_BR_AV.setObjectName("label_BR_AV")
         self.gridLayout_4.addWidget(self.label_BR_AV, 4, 0, 1, 1)
 
@@ -3652,18 +3664,18 @@ class Heart_para(object):
 
         self.doubleSpinBox_BR_AV = QtWidgets.QDoubleSpinBox(self.tab_0)
         self.doubleSpinBox_BR_AV.setStyleSheet("background-color: rgb(35, 35, 35);\n"
-                                               "color: rgb(255, 210, 119);\n"
-                                               "selection-color: rgb(237, 85, 59);\n"
-                                               "selection-background-color: rgb(33, 57, 86);\n"
-                                               "\n"
-                                               "font: 11pt \"Calibri\";")
+                                                "color: rgb(255, 210, 119);\n"
+                                                "selection-color: rgb(237, 85, 59);\n"
+                                                "selection-background-color: rgb(33, 57, 86);\n"
+                                                "\n"
+                                                "font: 11pt \"Calibri\";")
         self.doubleSpinBox_BR_AV.setObjectName("doubleSpinBox_BR_AV")
         self.gridLayout_4.addWidget(self.doubleSpinBox_BR_AV, 4, 3, 1, 1)
 
         # -----------------------------TRICUSPID VALVE-------------------
         self.label_BR_TV = QtWidgets.QLabel(self.tab_0)
         self.label_BR_TV.setStyleSheet("font: 9pt \"MS Shell Dlg 2\";\n"
-                                       "color: rgb(255,255,255);")
+                                        "color: rgb(255,255,255);")
         self.label_BR_TV.setObjectName("label_BR_TV")
         self.gridLayout_4.addWidget(self.label_BR_TV, 3, 0, 1, 1)
 
@@ -3680,18 +3692,18 @@ class Heart_para(object):
 
         self.doubleSpinBox_BR_TV = QtWidgets.QDoubleSpinBox(self.tab_0)
         self.doubleSpinBox_BR_TV.setStyleSheet("background-color: rgb(35, 35, 35);\n"
-                                               "color: rgb(255, 210, 119);\n"
-                                               "selection-color: rgb(237, 85, 59);\n"
-                                               "selection-background-color: rgb(33, 57, 86);\n"
-                                               "\n"
-                                               "font: 11pt \"Calibri\";")
+                                                "color: rgb(255, 210, 119);\n"
+                                                "selection-color: rgb(237, 85, 59);\n"
+                                                "selection-background-color: rgb(33, 57, 86);\n"
+                                                "\n"
+                                                "font: 11pt \"Calibri\";")
         self.doubleSpinBox_BR_TV.setObjectName("doubleSpinBox_BR_TV")
         self.gridLayout_4.addWidget(self.doubleSpinBox_BR_TV, 3, 3, 1, 1)
 
         # ---------------------------PULMONARY VALVE---------------------
         self.label_BR_PV = QtWidgets.QLabel(self.tab_0)
         self.label_BR_PV.setStyleSheet("font: 9pt \"MS Shell Dlg 2\";\n"
-                                       "color: rgb(255,255,255);")
+                                        "color: rgb(255,255,255);")
         self.label_BR_PV.setObjectName("label_BR_PV")
         self.gridLayout_4.addWidget(self.label_BR_PV, 2, 0, 1, 1)
 
@@ -3708,19 +3720,19 @@ class Heart_para(object):
 
         self.doubleSpinBox_BR_PV = QtWidgets.QDoubleSpinBox(self.tab_0)
         self.doubleSpinBox_BR_PV.setStyleSheet("background-color: rgb(35, 35, 35);\n"
-                                               "color: rgb(255, 210, 119);\n"
-                                               "selection-color: rgb(237, 85, 59);\n"
-                                               "selection-background-color: rgb(33, 57, 86);\n"
-                                               "\n"
-                                               "font: 11pt \"Calibri\";")
+                                                "color: rgb(255, 210, 119);\n"
+                                                "selection-color: rgb(237, 85, 59);\n"
+                                                "selection-background-color: rgb(33, 57, 86);\n"
+                                                "\n"
+                                                "font: 11pt \"Calibri\";")
         self.doubleSpinBox_BR_PV.setObjectName("doubleSpinBox_BR_PV")
         self.gridLayout_4.addWidget(self.doubleSpinBox_BR_PV, 2, 3, 1, 1)
 
         # ======================COMPLIANCE===============================
         self.label_CMP = QtWidgets.QLabel(self.tab_0)
         self.label_CMP.setStyleSheet("font: 10pt \"MS Shell Dlg 2\";\n"
-                                     "background-color: rgb(35, 35, 35);\n"
-                                     "color: rgb(255, 210, 119);")
+                                        "background-color: rgb(35, 35, 35);\n"
+                                        "color: rgb(255, 210, 119);")
         self.label_CMP.setObjectName("label_CMP")
         self.gridLayout_4.addWidget(self.label_CMP, 5, 0, 1, 4)
 
@@ -3783,7 +3795,7 @@ class Heart_para(object):
         # ---------------------ARTERY---------------------------
         self.label_CMP_ART = QtWidgets.QLabel(self.tab_0)
         self.label_CMP_ART.setStyleSheet("font: 9pt \"MS Shell Dlg 2\";\n"
-                                         "color: rgb(255,255,255);")
+                                            "color: rgb(255,255,255);")
         self.label_CMP_ART.setObjectName("label_CMP_ART")
         self.gridLayout_4.addWidget(self.label_CMP_ART, 8, 0, 1, 1)
 
@@ -3800,18 +3812,18 @@ class Heart_para(object):
 
         self.doubleSpinBox_CMP_ART = QtWidgets.QDoubleSpinBox(self.tab_0)
         self.doubleSpinBox_CMP_ART.setStyleSheet("background-color: rgb(35, 35, 35);\n"
-                                                 "color: rgb(255, 210, 119);\n"
-                                                 "selection-color: rgb(237, 85, 59);\n"
-                                                 "selection-background-color: rgb(33, 57, 86);\n"
-                                                 "\n"
-                                                 "font: 11pt \"Calibri\";")
+                                                    "color: rgb(255, 210, 119);\n"
+                                                    "selection-color: rgb(237, 85, 59);\n"
+                                                    "selection-background-color: rgb(33, 57, 86);\n"
+                                                    "\n"
+                                                    "font: 11pt \"Calibri\";")
         self.doubleSpinBox_CMP_ART.setObjectName("doubleSpinBox_CMP_ART")
         self.gridLayout_4.addWidget(self.doubleSpinBox_CMP_ART, 8, 3, 1, 1)
 
         # --------------------------CAPILLARY--------------------------
         self.label_CMP_CAP = QtWidgets.QLabel(self.tab_0)
         self.label_CMP_CAP.setStyleSheet("font: 9pt \"MS Shell Dlg 2\";\n"
-                                         "color: rgb(255,255,255);")
+                                            "color: rgb(255,255,255);")
         self.label_CMP_CAP.setObjectName("label_CMP_CAP")
         self.gridLayout_4.addWidget(self.label_CMP_CAP, 9, 0, 1, 1)
 
@@ -3828,18 +3840,18 @@ class Heart_para(object):
 
         self.doubleSpinBox_CMP_CAP = QtWidgets.QDoubleSpinBox(self.tab_0)
         self.doubleSpinBox_CMP_CAP.setStyleSheet("background-color: rgb(35, 35, 35);\n"
-                                                 "color: rgb(255, 210, 119);\n"
-                                                 "selection-color: rgb(237, 85, 59);\n"
-                                                 "selection-background-color: rgb(33, 57, 86);\n"
-                                                 "\n"
-                                                 "font: 11pt \"Calibri\";")
+                                                    "color: rgb(255, 210, 119);\n"
+                                                    "selection-color: rgb(237, 85, 59);\n"
+                                                    "selection-background-color: rgb(33, 57, 86);\n"
+                                                    "\n"
+                                                    "font: 11pt \"Calibri\";")
         self.doubleSpinBox_CMP_CAP.setObjectName("doubleSpinBox_CMP_CAP")
         self.gridLayout_4.addWidget(self.doubleSpinBox_CMP_CAP, 9, 3, 1, 1)
 
         # ---------------------VENOUS COMPLIANCE----------------------
         self.label_CMP_VCO = QtWidgets.QLabel(self.tab_0)
         self.label_CMP_VCO.setStyleSheet("font: 9pt \"MS Shell Dlg 2\";\n"
-                                         "color: rgb(255,255,255);")
+                                            "color: rgb(255,255,255);")
         self.label_CMP_VCO.setObjectName("label_CMP_VCO")
         self.gridLayout_4.addWidget(self.label_CMP_VCO, 11, 0, 1, 1)
 
@@ -3856,11 +3868,11 @@ class Heart_para(object):
 
         self.doubleSpinBox_CMP_VCO = QtWidgets.QDoubleSpinBox(self.tab_0)
         self.doubleSpinBox_CMP_VCO.setStyleSheet("background-color: rgb(35, 35, 35);\n"
-                                                 "color: rgb(255, 210, 119);\n"
-                                                 "selection-color: rgb(237, 85, 59);\n"
-                                                 "selection-background-color: rgb(33, 57, 86);\n"
-                                                 "\n"
-                                                 "font: 11pt \"Calibri\";")
+                                                    "color: rgb(255, 210, 119);\n"
+                                                    "selection-color: rgb(237, 85, 59);\n"
+                                                    "selection-background-color: rgb(33, 57, 86);\n"
+                                                    "\n"
+                                                    "font: 11pt \"Calibri\";")
         self.doubleSpinBox_CMP_VCO.setObjectName("doubleSpinBox_CMP_VCO")
         self.gridLayout_4.addWidget(self.doubleSpinBox_CMP_VCO, 11, 3, 1, 1)
 
@@ -3868,15 +3880,15 @@ class Heart_para(object):
         # ================================ELASTANCE==============================
         self.label_ELAS = QtWidgets.QLabel(self.tab_0)
         self.label_ELAS.setStyleSheet("font: 10pt \"MS Shell Dlg 2\";\n"
-                                      "background-color: rgb(35, 35, 35);\n"
-                                      "color: rgb(255, 210, 119);")
+                                        "background-color: rgb(35, 35, 35);\n"
+                                        "color: rgb(255, 210, 119);")
         self.label_ELAS.setObjectName("label_ELAS")
         self.gridLayout_4.addWidget(self.label_ELAS, 0, 5, 1, 3)
 
         # ------------------------PULMONARY VEIN------------------------
         self.label_CMP_PUV = QtWidgets.QLabel(self.tab_0)
         self.label_CMP_PUV.setStyleSheet("font: 9pt \"MS Shell Dlg 2\";\n"
-                                         "color: rgb(255,255,255);")
+                                            "color: rgb(255,255,255);")
         self.label_CMP_PUV.setObjectName("label_CMP_PUV")
         self.gridLayout_4.addWidget(self.label_CMP_PUV, 1, 5, 1, 1)
 
@@ -3893,18 +3905,18 @@ class Heart_para(object):
 
         self.doubleSpinBox_ELA_PUV = QtWidgets.QDoubleSpinBox(self.tab_0)
         self.doubleSpinBox_ELA_PUV.setStyleSheet("background-color: rgb(35, 35, 35);\n"
-                                                 "color: rgb(255, 210, 119);\n"
-                                                 "selection-color: rgb(237, 85, 59);\n"
-                                                 "selection-background-color: rgb(33, 57, 86);\n"
-                                                 "\n"
-                                                 "font: 11pt \"Calibri\";")
+                                                    "color: rgb(255, 210, 119);\n"
+                                                    "selection-color: rgb(237, 85, 59);\n"
+                                                    "selection-background-color: rgb(33, 57, 86);\n"
+                                                    "\n"
+                                                    "font: 11pt \"Calibri\";")
         self.doubleSpinBox_ELA_PUV.setObjectName("doubleSpinBox_ELA_PUV")
         self.gridLayout_4.addWidget(self.doubleSpinBox_ELA_PUV, 1, 7, 1, 1)
 
         #--------------------------PULMONARY ARTERY----------------------------
         self.label_CMP_PUA = QtWidgets.QLabel(self.tab_0)
         self.label_CMP_PUA.setStyleSheet("font: 9pt \"MS Shell Dlg 2\";\n"
-                                         "color: rgb(255,255,255);")
+                                            "color: rgb(255,255,255);")
         self.label_CMP_PUA.setObjectName("label_CMP_PUA")
         self.gridLayout_4.addWidget(self.label_CMP_PUA, 2, 5, 1, 1)
 
@@ -3921,18 +3933,18 @@ class Heart_para(object):
 
         self.doubleSpinBox_ELA_PUA = QtWidgets.QDoubleSpinBox(self.tab_0)
         self.doubleSpinBox_ELA_PUA.setStyleSheet("background-color: rgb(35, 35, 35);\n"
-                                                 "color: rgb(255, 210, 119);\n"
-                                                 "selection-color: rgb(237, 85, 59);\n"
-                                                 "selection-background-color: rgb(33, 57, 86);\n"
-                                                 "\n"
-                                                 "font: 11pt \"Calibri\";")
+                                                    "color: rgb(255, 210, 119);\n"
+                                                    "selection-color: rgb(237, 85, 59);\n"
+                                                    "selection-background-color: rgb(33, 57, 86);\n"
+                                                    "\n"
+                                                    "font: 11pt \"Calibri\";")
         self.doubleSpinBox_ELA_PUA.setObjectName("doubleSpinBox_ELA_PUA")
         self.gridLayout_4.addWidget(self.doubleSpinBox_ELA_PUA, 2, 7, 1, 1)
 
         #-------------------------- PULMONARY CAPILLARY---------------------
         self.label_ELA_PUC = QtWidgets.QLabel(self.tab_0)
         self.label_ELA_PUC.setStyleSheet("font: 9pt \"MS Shell Dlg 2\";\n"
-                                         "color: rgb(255,255,255);")
+                                            "color: rgb(255,255,255);")
         self.label_ELA_PUC.setObjectName("label_ELA_PUC")
         self.gridLayout_4.addWidget(self.label_ELA_PUC, 3, 5, 1, 1)
 
@@ -3949,11 +3961,11 @@ class Heart_para(object):
 
         self.doubleSpinBox_ELA_PUC = QtWidgets.QDoubleSpinBox(self.tab_0)
         self.doubleSpinBox_ELA_PUC.setStyleSheet("background-color: rgb(35, 35, 35);\n"
-                                                 "color: rgb(255, 210, 119);\n"
-                                                 "selection-color: rgb(237, 85, 59);\n"
-                                                 "selection-background-color: rgb(33, 57, 86);\n"
-                                                 "\n"
-                                                 "font: 11pt \"Calibri\";")
+                                                "color: rgb(255, 210, 119);\n"
+                                                "selection-color: rgb(237, 85, 59);\n"
+                                                "selection-background-color: rgb(33, 57, 86);\n"
+                                                "\n"
+                                                "font: 11pt \"Calibri\";")
         self.doubleSpinBox_ELA_PUC.setObjectName("doubleSpinBox_ELA_PUC")
         self.gridLayout_4.addWidget(self.doubleSpinBox_ELA_PUC, 3, 7, 1, 1)
 
@@ -3963,7 +3975,7 @@ class Heart_para(object):
         # -----------------------LEFT ATRIUM (AMPLITUDE)----------------------
         self.label_ELA_LAa = QtWidgets.QLabel(self.tab_0)
         self.label_ELA_LAa.setStyleSheet("font: 9pt \"MS Shell Dlg 2\";\n"
-                                         "color: rgb(255,255,255);")
+                                            "color: rgb(255,255,255);")
         self.label_ELA_LAa.setObjectName("label_ELA_LAa")
         self.gridLayout_4.addWidget(self.label_ELA_LAa, 4, 5, 1, 1)
 
@@ -3980,18 +3992,18 @@ class Heart_para(object):
 
         self.doubleSpinBox_ELA_LAa = QtWidgets.QDoubleSpinBox(self.tab_0)
         self.doubleSpinBox_ELA_LAa.setStyleSheet("background-color: rgb(35, 35, 35);\n"
-                                                 "color: rgb(255, 210, 119);\n"
-                                                 "selection-color: rgb(237, 85, 59);\n"
-                                                 "selection-background-color: rgb(33, 57, 86);\n"
-                                                 "\n"
-                                                 "font: 11pt \"Calibri\";")
+                                                        "color: rgb(255, 210, 119);\n"
+                                                        "selection-color: rgb(237, 85, 59);\n"
+                                                        "selection-background-color: rgb(33, 57, 86);\n"
+                                                        "\n"
+                                                        "font: 11pt \"Calibri\";")
         self.doubleSpinBox_ELA_LAa.setObjectName("doubleSpinBox_ELA_LAa")
         self.gridLayout_4.addWidget(self.doubleSpinBox_ELA_LAa, 4, 7, 1, 1)
 
         #--------------------------------LEFT ATRIUM(BASE)------------------------
         self.label_ELA_LAb = QtWidgets.QLabel(self.tab_0)
         self.label_ELA_LAb.setStyleSheet("font: 9pt \"MS Shell Dlg 2\";\n"
-                                         "color: rgb(255,255,255);")
+                                            "color: rgb(255,255,255);")
         self.label_ELA_LAb.setObjectName("label_ELA_LAb")
         self.gridLayout_4.addWidget(self.label_ELA_LAb, 5, 5, 1, 1)
 
@@ -4008,11 +4020,11 @@ class Heart_para(object):
 
         self.doubleSpinBox_ELA_LAb = QtWidgets.QDoubleSpinBox(self.tab_0)
         self.doubleSpinBox_ELA_LAb.setStyleSheet("background-color: rgb(35, 35, 35);\n"
-                                                 "color: rgb(255, 210, 119);\n"
-                                                 "selection-color: rgb(237, 85, 59);\n"
-                                                 "selection-background-color: rgb(33, 57, 86);\n"
-                                                 "\n"
-                                                 "font: 11pt \"Calibri\";")
+                                                    "color: rgb(255, 210, 119);\n"
+                                                    "selection-color: rgb(237, 85, 59);\n"
+                                                    "selection-background-color: rgb(33, 57, 86);\n"
+                                                    "\n"
+                                                    "font: 11pt \"Calibri\";")
         self.doubleSpinBox_ELA_LAb.setObjectName("doubleSpinBox_ELA_LAb")
         self.gridLayout_4.addWidget(self.doubleSpinBox_ELA_LAb, 5, 7, 1, 1)
 
@@ -4021,7 +4033,7 @@ class Heart_para(object):
         # ----------------------LEFT VENTRICLE (AMPLITUDE)---------------------------
         self.label_ELA_LVa = QtWidgets.QLabel(self.tab_0)
         self.label_ELA_LVa.setStyleSheet("font: 9pt \"MS Shell Dlg 2\";\n"
-                                         "color: rgb(255,255,255);")
+                                            "color: rgb(255,255,255);")
         self.label_ELA_LVa.setObjectName("label_ELA_LVa")
         self.gridLayout_4.addWidget(self.label_ELA_LVa, 6, 5, 1, 1)
 
@@ -4038,11 +4050,11 @@ class Heart_para(object):
 
         self.doubleSpinBox_ELA_LVa = QtWidgets.QDoubleSpinBox(self.tab_0)
         self.doubleSpinBox_ELA_LVa.setStyleSheet("background-color: rgb(35, 35, 35);\n"
-                                                 "color: rgb(255, 210, 119);\n"
-                                                 "selection-color: rgb(237, 85, 59);\n"
-                                                 "selection-background-color: rgb(33, 57, 86);\n"
-                                                 "\n"
-                                                 "font: 11pt \"Calibri\";")
+                                                    "color: rgb(255, 210, 119);\n"
+                                                    "selection-color: rgb(237, 85, 59);\n"
+                                                    "selection-background-color: rgb(33, 57, 86);\n"
+                                                    "\n"
+                                                    "font: 11pt \"Calibri\";")
         self.doubleSpinBox_ELA_LVa.setObjectName("doubleSpinBox_ELA_LVa")
         self.gridLayout_4.addWidget(self.doubleSpinBox_ELA_LVa, 6, 7, 1, 1)
 
@@ -4050,7 +4062,7 @@ class Heart_para(object):
         # -----------------------LEFT VENTRICLE (BASE)---------------------------
         self.label_ELA_LVb = QtWidgets.QLabel(self.tab_0)
         self.label_ELA_LVb.setStyleSheet("font: 9pt \"MS Shell Dlg 2\";\n"
-                                         "color: rgb(255,255,255);")
+                                            "color: rgb(255,255,255);")
         self.label_ELA_LVb.setObjectName("label_ELA_LVb")
         self.gridLayout_4.addWidget(self.label_ELA_LVb, 7, 5, 1, 1)
 
@@ -4067,18 +4079,18 @@ class Heart_para(object):
 
         self.doubleSpinBox_ELA_LVb = QtWidgets.QDoubleSpinBox(self.tab_0)
         self.doubleSpinBox_ELA_LVb.setStyleSheet("background-color: rgb(35, 35, 35);\n"
-                                                 "color: rgb(255, 210, 119);\n"
-                                                 "selection-color: rgb(237, 85, 59);\n"
-                                                 "selection-background-color: rgb(33, 57, 86);\n"
-                                                 "\n"
-                                                 "font: 11pt \"Calibri\";")
+                                                    "color: rgb(255, 210, 119);\n"
+                                                    "selection-color: rgb(237, 85, 59);\n"
+                                                    "selection-background-color: rgb(33, 57, 86);\n"
+                                                    "\n"
+                                                    "font: 11pt \"Calibri\";")
         self.doubleSpinBox_ELA_LVb.setObjectName("doubleSpinBox_ELA_LVb")
         self.gridLayout_4.addWidget(self.doubleSpinBox_ELA_LVb, 7, 7, 1, 1)
 
         # -----------------------RIGHT ATRIUM (AMPLITUDE)----------------------
         self.label_ELA_RAa = QtWidgets.QLabel(self.tab_0)
         self.label_ELA_RAa.setStyleSheet("font: 9pt \"MS Shell Dlg 2\";\n"
-                                         "color: rgb(255,255,255);")
+                                            "color: rgb(255,255,255);")
         self.label_ELA_RAa.setObjectName("label_ELA_RAa")
         self.gridLayout_4.addWidget(self.label_ELA_RAa, 8, 5, 1, 1)
 
@@ -4095,18 +4107,18 @@ class Heart_para(object):
 
         self.doubleSpinBox_ELA_RAa = QtWidgets.QDoubleSpinBox(self.tab_0)
         self.doubleSpinBox_ELA_RAa.setStyleSheet("background-color: rgb(35, 35, 35);\n"
-                                                 "color: rgb(255, 210, 119);\n"
-                                                 "selection-color: rgb(237, 85, 59);\n"
-                                                 "selection-background-color: rgb(33, 57, 86);\n"
-                                                 "\n"
-                                                 "font: 11pt \"Calibri\";")
+                                                    "color: rgb(255, 210, 119);\n"
+                                                    "selection-color: rgb(237, 85, 59);\n"
+                                                    "selection-background-color: rgb(33, 57, 86);\n"
+                                                    "\n"
+                                                    "font: 11pt \"Calibri\";")
         self.doubleSpinBox_ELA_RAa.setObjectName("doubleSpinBox_ELA_RAa")
         self.gridLayout_4.addWidget(self.doubleSpinBox_ELA_RAa, 8, 7, 1, 1)
 
         # -----------------------RIGHT ATRIUM (BASE)----------------------
         self.label_ELA_RAb = QtWidgets.QLabel(self.tab_0)
         self.label_ELA_RAb.setStyleSheet("font: 9pt \"MS Shell Dlg 2\";\n"
-                                         "color: rgb(255,255,255);")
+                                            "color: rgb(255,255,255);")
         self.label_ELA_RAb.setObjectName("label_ELA_RAb")
         self.gridLayout_4.addWidget(self.label_ELA_RAb, 9, 5, 1, 1)
 
@@ -4123,18 +4135,18 @@ class Heart_para(object):
 
         self.doubleSpinBox_ELA_RAb = QtWidgets.QDoubleSpinBox(self.tab_0)
         self.doubleSpinBox_ELA_RAb.setStyleSheet("background-color: rgb(35, 35, 35);\n"
-                                                 "color: rgb(255, 210, 119);\n"
-                                                 "selection-color: rgb(237, 85, 59);\n"
-                                                 "selection-background-color: rgb(33, 57, 86);\n"
-                                                 "\n"
-                                                 "font: 11pt \"Calibri\";")
+                                                    "color: rgb(255, 210, 119);\n"
+                                                    "selection-color: rgb(237, 85, 59);\n"
+                                                    "selection-background-color: rgb(33, 57, 86);\n"
+                                                    "\n"
+                                                    "font: 11pt \"Calibri\";")
         self.doubleSpinBox_ELA_RAb.setObjectName("doubleSpinBox_ELA_RAb")
         self.gridLayout_4.addWidget(self.doubleSpinBox_ELA_RAb, 9, 7, 1, 1)
 
         # -----------------------RIGHT VENTRICLE (AMPLITUDE)----------------------
         self.label_ELA_RVa = QtWidgets.QLabel(self.tab_0)
         self.label_ELA_RVa.setStyleSheet("font: 9pt \"MS Shell Dlg 2\";\n"
-                                         "color: rgb(255,255,255);")
+                                            "color: rgb(255,255,255);")
         self.label_ELA_RVa.setObjectName("label_ELA_RVa")
         self.gridLayout_4.addWidget(self.label_ELA_RVa, 11, 5, 1, 1)
 
@@ -4151,11 +4163,11 @@ class Heart_para(object):
 
         self.doubleSpinBox_ELA_RVa = QtWidgets.QDoubleSpinBox(self.tab_0)
         self.doubleSpinBox_ELA_RVa.setStyleSheet("background-color: rgb(35, 35, 35);\n"
-                                                 "color: rgb(255, 210, 119);\n"
-                                                 "selection-color: rgb(237, 85, 59);\n"
-                                                 "selection-background-color: rgb(33, 57, 86);\n"
-                                                 "\n"
-                                                 "font: 11pt \"Calibri\";")
+                                                    "color: rgb(255, 210, 119);\n"
+                                                    "selection-color: rgb(237, 85, 59);\n"
+                                                    "selection-background-color: rgb(33, 57, 86);\n"
+                                                    "\n"
+                                                    "font: 11pt \"Calibri\";")
         self.doubleSpinBox_ELA_RVa.setObjectName("doubleSpinBox_ELA_RVa")
         self.gridLayout_4.addWidget(self.doubleSpinBox_ELA_RVa, 11, 7, 1, 1)
 
@@ -4163,17 +4175,17 @@ class Heart_para(object):
         # -----------------------RIGHT VENTRICLE (BASE)----------------------
         self.label_ELA_RVb = QtWidgets.QLabel(self.tab_0)
         self.label_ELA_RVb.setStyleSheet("font: 9pt \"MS Shell Dlg 2\";\n"
-                                         "color: rgb(255,255,255);")
+                                            "color: rgb(255,255,255);")
         self.label_ELA_RVb.setObjectName("label_ELA_RVb")
         self.gridLayout_4.addWidget(self.label_ELA_RVb, 0, 9, 1, 1)
 
         self.doubleSpinBox_ELA_RVb = QtWidgets.QDoubleSpinBox(self.tab_0)
         self.doubleSpinBox_ELA_RVb.setStyleSheet("background-color: rgb(35, 35, 35);\n"
-                                                 "color: rgb(255, 210, 119);\n"
-                                                 "selection-color: rgb(237, 85, 59);\n"
-                                                 "selection-background-color: rgb(33, 57, 86);\n"
-                                                 "\n"
-                                                 "font: 11pt \"Calibri\";")
+                                                    "color: rgb(255, 210, 119);\n"
+                                                    "selection-color: rgb(237, 85, 59);\n"
+                                                    "selection-background-color: rgb(33, 57, 86);\n"
+                                                    "\n"
+                                                    "font: 11pt \"Calibri\";")
         self.doubleSpinBox_ELA_RVb.setObjectName("doubleSpinBox_ELA_RVb")
         self.gridLayout_4.addWidget(self.doubleSpinBox_ELA_RVb, 0, 11, 1, 1)
 
@@ -4188,28 +4200,17 @@ class Heart_para(object):
         self.checkBox_ELA_RVb.setObjectName("checkBox_ELA_RVb")
         self.gridLayout_4.addWidget(self.checkBox_ELA_RVb, 0, 10, 1, 1)
 
-        #===================================SPACER ITEMS=========================
-        #spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        #self.gridLayout_4.addItem(spacerItem, 4, 4, 1, 1)
-
-        #spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        #self.gridLayout_4.addItem(spacerItem1, 2, 8, 1, 1)
-
-
         #________________________________TAB WIDGET (TAB 1)_______________________________
         self.tab_1 = QtWidgets.QWidget()
         self.tab_1.setObjectName("tab_1")
         self.gridLayout = QtWidgets.QGridLayout(self.tab_1)
         self.gridLayout.setObjectName("gridLayout")
-        #_________________________________SPACER ITEMS__________________________
-        #spacerItem2 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        #self.gridLayout.addItem(spacerItem2, 5, 3, 1, 1)
 
         #==========================INDUCTANCE===========================
         self.label_IND = QtWidgets.QLabel(self.tab_1)
         self.label_IND.setStyleSheet("font: 10pt \"MS Shell Dlg 2\";\n"
-                                     "background-color: rgb(35, 35, 35);\n"
-                                     "color: rgb(255, 210, 119);")
+                                        "background-color: rgb(35, 35, 35);\n"
+                                        "color: rgb(255, 210, 119);")
         self.label_IND.setObjectName("label_IND")
         self.gridLayout.addWidget(self.label_IND, 0, 0, 1, 3)
 
@@ -4300,17 +4301,17 @@ class Heart_para(object):
         # -----------------------PULMONARY VALVE------------------------------
         self.label_IND_PUVA = QtWidgets.QLabel(self.tab_1)
         self.label_IND_PUVA.setStyleSheet("font: 9pt \"MS Shell Dlg 2\";\n"
-                                          "color: rgb(255,255,255);")
+                                            "color: rgb(255,255,255);")
         self.label_IND_PUVA.setObjectName("label_IND_PUVA")
         self.gridLayout.addWidget(self.label_IND_PUVA, 4, 0, 1, 1)
 
         self.doubleSpinBox_IND_PUVA = QtWidgets.QDoubleSpinBox(self.tab_1)
         self.doubleSpinBox_IND_PUVA.setStyleSheet("background-color: rgb(35, 35, 35);\n"
-                                                  "color: rgb(255, 210, 119);\n"
-                                                  "selection-color: rgb(237, 85, 59);\n"
-                                                  "selection-background-color: rgb(33, 57, 86);\n"
-                                                  "\n"
-                                                  "font: 11pt \"Calibri\";")
+                                                    "color: rgb(255, 210, 119);\n"
+                                                    "selection-color: rgb(237, 85, 59);\n"
+                                                    "selection-background-color: rgb(33, 57, 86);\n"
+                                                    "\n"
+                                                    "font: 11pt \"Calibri\";")
         self.doubleSpinBox_IND_PUVA.setObjectName("doubleSpinBox_IND_PUVA")
         self.gridLayout.addWidget(self.doubleSpinBox_IND_PUVA, 4, 2, 1, 1)
 
@@ -4328,7 +4329,7 @@ class Heart_para(object):
         # -----------------------PULMONARY ARTERY------------------------------
         self.label_IND_PUA = QtWidgets.QLabel(self.tab_1)
         self.label_IND_PUA.setStyleSheet("font: 9pt \"MS Shell Dlg 2\";\n"
-                                         "color: rgb(255,255,255);")
+                                            "color: rgb(255,255,255);")
         self.label_IND_PUA.setObjectName("label_IND_PUA")
         self.gridLayout.addWidget(self.label_IND_PUA, 5, 0, 1, 1)
 
@@ -4345,28 +4346,28 @@ class Heart_para(object):
 
         self.doubleSpinBox_IND_PUA = QtWidgets.QDoubleSpinBox(self.tab_1)
         self.doubleSpinBox_IND_PUA.setStyleSheet("background-color: rgb(35, 35, 35);\n"
-                                                 "color: rgb(255, 210, 119);\n"
-                                                 "selection-color: rgb(237, 85, 59);\n"
-                                                 "selection-background-color: rgb(33, 57, 86);\n"
-                                                 "\n"
-                                                 "font: 11pt \"Calibri\";")
+                                                    "color: rgb(255, 210, 119);\n"
+                                                    "selection-color: rgb(237, 85, 59);\n"
+                                                    "selection-background-color: rgb(33, 57, 86);\n"
+                                                    "\n"
+                                                    "font: 11pt \"Calibri\";")
         self.doubleSpinBox_IND_PUA.setObjectName("doubleSpinBox_IND_PUA")
         self.gridLayout.addWidget(self.doubleSpinBox_IND_PUA, 5, 2, 1, 1)
 
         # -----------------------PULMONARY CAPILLARY ------------------------------
         self.label_IND_PUC = QtWidgets.QLabel(self.tab_1)
         self.label_IND_PUC.setStyleSheet("font: 9pt \"MS Shell Dlg 2\";\n"
-                                         "color: rgb(255,255,255);")
+                                            "color: rgb(255,255,255);")
         self.label_IND_PUC.setObjectName("label_IND_PUC")
         self.gridLayout.addWidget(self.label_IND_PUC, 6, 0, 1, 1)
 
         self.doubleSpinBox_IND_PUC = QtWidgets.QDoubleSpinBox(self.tab_1)
         self.doubleSpinBox_IND_PUC.setStyleSheet("background-color: rgb(35, 35, 35);\n"
-                                                 "color: rgb(255, 210, 119);\n"
-                                                 "selection-color: rgb(237, 85, 59);\n"
-                                                 "selection-background-color: rgb(33, 57, 86);\n"
-                                                 "\n"
-                                                 "font: 11pt \"Calibri\";")
+                                                    "color: rgb(255, 210, 119);\n"
+                                                    "selection-color: rgb(237, 85, 59);\n"
+                                                    "selection-background-color: rgb(33, 57, 86);\n"
+                                                    "\n"
+                                                    "font: 11pt \"Calibri\";")
         self.doubleSpinBox_IND_PUC.setObjectName("doubleSpinBox_IND_PUC")
         self.gridLayout.addWidget(self.doubleSpinBox_IND_PUC, 6, 2, 1, 1)
 
@@ -4384,7 +4385,7 @@ class Heart_para(object):
         # -----------------------PULMONARY VEIN------------------------------
         self.label_IND_PUV = QtWidgets.QLabel(self.tab_1)
         self.label_IND_PUV.setStyleSheet("font: 9pt \"MS Shell Dlg 2\";\n"
-                                         "color: rgb(255,255,255);")
+                                            "color: rgb(255,255,255);")
         self.label_IND_PUV.setObjectName("label_IND_PUV")
         self.gridLayout.addWidget(self.label_IND_PUV, 7, 0, 1, 1)
 
@@ -4401,11 +4402,11 @@ class Heart_para(object):
 
         self.doubleSpinBox_IND_PUV = QtWidgets.QDoubleSpinBox(self.tab_1)
         self.doubleSpinBox_IND_PUV.setStyleSheet("background-color: rgb(35, 35, 35);\n"
-                                                 "color: rgb(255, 210, 119);\n"
-                                                 "selection-color: rgb(237, 85, 59);\n"
-                                                 "selection-background-color: rgb(33, 57, 86);\n"
-                                                 "\n"
-                                                 "font: 11pt \"Calibri\";")
+                                                    "color: rgb(255, 210, 119);\n"
+                                                    "selection-color: rgb(237, 85, 59);\n"
+                                                    "selection-background-color: rgb(33, 57, 86);\n"
+                                                    "\n"
+                                                    "font: 11pt \"Calibri\";")
         self.doubleSpinBox_IND_PUV.setObjectName("doubleSpinBox_IND_PUV")
         self.gridLayout.addWidget(self.doubleSpinBox_IND_PUV, 7, 2, 1, 1)
 
@@ -4493,10 +4494,10 @@ class Heart_para(object):
                                                 "font: 11pt \"Calibri\";")
         self.doubleSpinBox_IND_AO.setObjectName("doubleSpinBox_IND_AO")
         self.gridLayout.addWidget(self.doubleSpinBox_IND_AO, 10, 2, 1, 1)
-       # -----------------------CAPILLARY------------------------------
+        # -----------------------CAPILLARY------------------------------
         self.label_IND_CAP = QtWidgets.QLabel(self.tab_1)
         self.label_IND_CAP.setStyleSheet("font: 9pt \"MS Shell Dlg 2\";\n"
-                                         "color: rgb(255,255,255);")
+                                            "color: rgb(255,255,255);")
         self.label_IND_CAP.setObjectName("label_IND_CAP")
         self.gridLayout.addWidget(self.label_IND_CAP, 11, 0, 1, 1)
 
@@ -4513,11 +4514,11 @@ class Heart_para(object):
 
         self.doubleSpinBox_IND_CAP = QtWidgets.QDoubleSpinBox(self.tab_1)
         self.doubleSpinBox_IND_CAP.setStyleSheet("background-color: rgb(35, 35, 35);\n"
-                                                 "color: rgb(255, 210, 119);\n"
-                                                 "selection-color: rgb(237, 85, 59);\n"
-                                                 "selection-background-color: rgb(33, 57, 86);\n"
-                                                 "\n"
-                                                 "font: 11pt \"Calibri\";")
+                                                    "color: rgb(255, 210, 119);\n"
+                                                    "selection-color: rgb(237, 85, 59);\n"
+                                                    "selection-background-color: rgb(33, 57, 86);\n"
+                                                    "\n"
+                                                    "font: 11pt \"Calibri\";")
         self.doubleSpinBox_IND_CAP.setObjectName("doubleSpinBox_IND_CAP")
         self.gridLayout.addWidget(self.doubleSpinBox_IND_CAP, 11, 2, 1, 1)
 
@@ -4529,8 +4530,8 @@ class Heart_para(object):
         sizePolicy.setHeightForWidth(self.label_RES.sizePolicy().hasHeightForWidth())
         self.label_RES.setSizePolicy(sizePolicy)
         self.label_RES.setStyleSheet("font: 10pt \"MS Shell Dlg 2\";\n"
-                                     "background-color: rgb(35, 35, 35);\n"
-                                     "color: rgb(255, 210, 119);")
+                                        "background-color: rgb(35, 35, 35);\n"
+                                        "color: rgb(255, 210, 119);")
         self.label_RES.setObjectName("label_RES")
         self.gridLayout.addWidget(self.label_RES, 0, 4, 1, 3)
 
@@ -4620,10 +4621,10 @@ class Heart_para(object):
         self.doubleSpinBox_RES_TV.setObjectName("doubleSpinBox_RES_TV")
         self.gridLayout.addWidget(self.doubleSpinBox_RES_TV, 3, 6, 1, 1)
 
-       # -----------------PULMONARY VALVE-------------------------------
+        # -----------------PULMONARY VALVE-------------------------------
         self.label_RES_PUVA = QtWidgets.QLabel(self.tab_1)
         self.label_RES_PUVA.setStyleSheet("font: 9pt \"MS Shell Dlg 2\";\n"
-                                          "color: rgb(255,255,255);")
+                                            "color: rgb(255,255,255);")
         self.label_RES_PUVA.setObjectName("label_RES_PUVA")
         self.gridLayout.addWidget(self.label_RES_PUVA, 4, 4, 1, 1)
 
@@ -4640,18 +4641,18 @@ class Heart_para(object):
 
         self.doubleSpinBox_RES_PUVA = QtWidgets.QDoubleSpinBox(self.tab_1)
         self.doubleSpinBox_RES_PUVA.setStyleSheet("background-color: rgb(35, 35, 35);\n"
-                                                  "color: rgb(255, 210, 119);\n"
-                                                  "selection-color: rgb(237, 85, 59);\n"
-                                                  "selection-background-color: rgb(33, 57, 86);\n"
-                                                  "\n"
-                                                  "font: 11pt \"Calibri\";")
+                                                    "color: rgb(255, 210, 119);\n"
+                                                    "selection-color: rgb(237, 85, 59);\n"
+                                                    "selection-background-color: rgb(33, 57, 86);\n"
+                                                    "\n"
+                                                    "font: 11pt \"Calibri\";")
         self.doubleSpinBox_RES_PUVA.setObjectName("doubleSpinBox_RES_PUVA")
         self.gridLayout.addWidget(self.doubleSpinBox_RES_PUVA, 4, 6, 1, 1)
 
         # ------------------------PULMONARY ARTERY-------------------
         self.label_RES_PUA = QtWidgets.QLabel(self.tab_1)
         self.label_RES_PUA.setStyleSheet("font: 9pt \"MS Shell Dlg 2\";\n"
-                                         "color: rgb(255,255,255);")
+                                            "color: rgb(255,255,255);")
         self.label_RES_PUA.setObjectName("label_RES_PUA")
         self.gridLayout.addWidget(self.label_RES_PUA, 5, 4, 1, 1)
 
@@ -4668,18 +4669,17 @@ class Heart_para(object):
 
         self.doubleSpinBox_RES_PUA = QtWidgets.QDoubleSpinBox(self.tab_1)
         self.doubleSpinBox_RES_PUA.setStyleSheet("background-color: rgb(35, 35, 35);\n"
-                                                 "color: rgb(255, 210, 119);\n"
-                                                 "selection-color: rgb(237, 85, 59);\n"
-                                                 "selection-background-color: rgb(33, 57, 86);\n"
-                                                 "\n"
-                                                 "font: 11pt \"Calibri\";")
+                                                    "color: rgb(255, 210, 119);\n"
+                                                    "selection-color: rgb(237, 85, 59);\n"
+                                                    "selection-background-color: rgb(33, 57, 86);\n"
+                                                    "\n"
+                                                    "font: 11pt \"Calibri\";")
         self.doubleSpinBox_RES_PUA.setObjectName("doubleSpinBox_RES_PUA")
         self.gridLayout.addWidget(self.doubleSpinBox_RES_PUA, 5, 6, 1, 1)
 
         # --------------------PULMONARY CAPILLARY------------------------
         self.label_RES_CAP = QtWidgets.QLabel(self.tab_1)
-        self.label_RES_CAP.setStyleSheet("font: 9pt \"MS Shell Dlg 2\";\n"
-                                         "color: rgb(255,255,255);")
+        self.label_RES_CAP.setStyleSheet("font: 9pt \"MS Shell Dlg 2\";\n" "color: rgb(255,255,255);")
         self.label_RES_CAP.setObjectName("label_RES_CAP")
         self.gridLayout.addWidget(self.label_RES_CAP, 6, 4, 1, 1)
 
@@ -4696,18 +4696,18 @@ class Heart_para(object):
 
         self.doubleSpinBox_RES_PUC = QtWidgets.QDoubleSpinBox(self.tab_1)
         self.doubleSpinBox_RES_PUC.setStyleSheet("background-color: rgb(35, 35, 35);\n"
-                                                 "color: rgb(255, 210, 119);\n"
-                                                 "selection-color: rgb(237, 85, 59);\n"
-                                                 "selection-background-color: rgb(33, 57, 86);\n"
-                                                 "\n"
-                                                 "font: 11pt \"Calibri\";")
+                                                    "color: rgb(255, 210, 119);\n"
+                                                    "selection-color: rgb(237, 85, 59);\n"
+                                                    "selection-background-color: rgb(33, 57, 86);\n"
+                                                    "\n"
+                                                    "font: 11pt \"Calibri\";")
         self.doubleSpinBox_RES_PUC.setObjectName("doubleSpinBox_RES_PUC")
         self.gridLayout.addWidget(self.doubleSpinBox_RES_PUC, 6, 6, 1, 1)
 
         # -----------------PULMONARY VEIN-----------------------------
         self.label_RES_PUV = QtWidgets.QLabel(self.tab_1)
         self.label_RES_PUV.setStyleSheet("font: 9pt \"MS Shell Dlg 2\";\n"
-                                         "color: rgb(255,255,255);")
+                                            "color: rgb(255,255,255);")
         self.label_RES_PUV.setObjectName("label_RES_PUV")
         self.gridLayout.addWidget(self.label_RES_PUV, 7, 4, 1, 1)
 
@@ -4723,11 +4723,11 @@ class Heart_para(object):
         self.gridLayout.addWidget(self.checkBox_RES_PUV, 7, 5, 1, 1)
         self.doubleSpinBox_RES_PUV = QtWidgets.QDoubleSpinBox(self.tab_1)
         self.doubleSpinBox_RES_PUV.setStyleSheet("background-color: rgb(35, 35, 35);\n"
-                                                 "color: rgb(255, 210, 119);\n"
-                                                 "selection-color: rgb(237, 85, 59);\n"
-                                                 "selection-background-color: rgb(33, 57, 86);\n"
-                                                 "\n"
-                                                 "font: 11pt \"Calibri\";")
+                                                    "color: rgb(255, 210, 119);\n"
+                                                    "selection-color: rgb(237, 85, 59);\n"
+                                                    "selection-background-color: rgb(33, 57, 86);\n"
+                                                    "\n"
+                                                    "font: 11pt \"Calibri\";")
         self.doubleSpinBox_RES_PUV.setObjectName("doubleSpinBox_RES_PUV")
         self.gridLayout.addWidget(self.doubleSpinBox_RES_PUV, 7, 6, 1, 1)
 
@@ -4818,7 +4818,7 @@ class Heart_para(object):
         #  -------------------CAPILLARY--------------------------
         self.label_RES_CAP_2 = QtWidgets.QLabel(self.tab_1)
         self.label_RES_CAP_2.setStyleSheet("font: 9pt \"MS Shell Dlg 2\";\n"
-                                           "color: rgb(255,255,255);")
+                                            "color: rgb(255,255,255);")
         self.label_RES_CAP_2.setObjectName("label_RES_CAP_2")
         self.gridLayout.addWidget(self.label_RES_CAP_2, 11, 4, 1, 1)
 
@@ -4835,11 +4835,11 @@ class Heart_para(object):
 
         self.doubleSpinBox_RES_CAP = QtWidgets.QDoubleSpinBox(self.tab_1)
         self.doubleSpinBox_RES_CAP.setStyleSheet("background-color: rgb(35, 35, 35);\n"
-                                                 "color: rgb(255, 210, 119);\n"
-                                                 "selection-color: rgb(237, 85, 59);\n"
-                                                 "selection-background-color: rgb(33, 57, 86);\n"
-                                                 "\n"
-                                                 "font: 11pt \"Calibri\";")
+                                                    "color: rgb(255, 210, 119);\n"
+                                                    "selection-color: rgb(237, 85, 59);\n"
+                                                    "selection-background-color: rgb(33, 57, 86);\n"
+                                                    "\n"
+                                                    "font: 11pt \"Calibri\";")
         self.doubleSpinBox_RES_CAP.setObjectName("doubleSpinBox_RES_CAP")
         self.gridLayout.addWidget(self.doubleSpinBox_RES_CAP, 11, 6, 1, 1)
 
@@ -4859,7 +4859,7 @@ class Heart_para(object):
         # --------------------------VENOUS INERTANCE---------------------------------
         self.label_VE_VI = QtWidgets.QLabel(self.tab_1)
         self.label_VE_VI.setStyleSheet("font: 9pt \"MS Shell Dlg 2\";\n"
-                                         "color: rgb(255,255,255);")
+                                            "color: rgb(255,255,255);")
         self.label_VE_VI.setObjectName("label_VE_VI_2")
         self.gridLayout.addWidget(self.label_VE_VI, 1, 8, 1, 1)
 
@@ -4877,11 +4877,11 @@ class Heart_para(object):
 
         self.doubleSpinBox_VE_VI = QtWidgets.QDoubleSpinBox(self.tab_1)
         self.doubleSpinBox_VE_VI.setStyleSheet("background-color: rgb(35, 35, 35);\n"
-                                               "color: rgb(255, 210, 119);\n"
-                                               "selection-color: rgb(237, 85, 59);\n"
-                                               "selection-background-color: rgb(33, 57, 86);\n"
-                                               "\n"
-                                               "font: 11pt \"Calibri\";")
+                                                "color: rgb(255, 210, 119);\n"
+                                                "selection-color: rgb(237, 85, 59);\n"
+                                                "selection-background-color: rgb(33, 57, 86);\n"
+                                                "\n"
+                                                "font: 11pt \"Calibri\";")
         self.doubleSpinBox_VE_VI.setObjectName("doubleSpinBox_VE_VI")
         self.gridLayout.addWidget(self.doubleSpinBox_VE_VI, 1, 10, 1, 1)
 
@@ -4906,18 +4906,18 @@ class Heart_para(object):
 
         self.doubleSpinBox_VE_VC = QtWidgets.QDoubleSpinBox(self.tab_1)
         self.doubleSpinBox_VE_VC.setStyleSheet("background-color: rgb(35, 35, 35);\n"
-                                               "color: rgb(255, 210, 119);\n"
-                                               "selection-color: rgb(237, 85, 59);\n"
-                                               "selection-background-color: rgb(33, 57, 86);\n"
-                                               "\n"
-                                               "font: 11pt \"Calibri\";")
+                                                "color: rgb(255, 210, 119);\n"
+                                                "selection-color: rgb(237, 85, 59);\n"
+                                                "selection-background-color: rgb(33, 57, 86);\n"
+                                                "\n"
+                                                "font: 11pt \"Calibri\";")
         self.doubleSpinBox_VE_VC.setObjectName("doubleSpinBox_VE_VC")
         self.gridLayout.addWidget(self.doubleSpinBox_VE_VC, 2, 10, 1, 1)
 
         # -------------------------- TRICUSPID VALVE---------------------------
         self.label_VE_TV_2 = QtWidgets.QLabel(self.tab_1)
         self.label_VE_TV_2.setStyleSheet("font: 9pt \"MS Shell Dlg 2\";\n"
-                                         "color: rgb(255,255,255);")
+                                            "color: rgb(255,255,255);")
         self.label_VE_TV_2.setObjectName("label_VE_TV_2")
         self.gridLayout.addWidget(self.label_VE_TV_2, 3, 8, 1, 1)
 
@@ -4932,20 +4932,19 @@ class Heart_para(object):
         self.checkBox_VE_TV.setObjectName("checkBox_VE_TV")
         self.gridLayout.addWidget(self.checkBox_VE_TV, 3, 9, 1, 1)
 
-        self.doubleSpinBox_VE_TV = QtWidgets.QDoubleSpinBox(self.tab_1)
-        self.doubleSpinBox_VE_TV.setStyleSheet("background-color: rgb(35, 35, 35);\n"
-                                               "color: rgb(255, 210, 119);\n"
-                                               "selection-color: rgb(237, 85, 59);\n"
-                                               "selection-background-color: rgb(33, 57, 86);\n"
-                                               "\n"
-                                               "font: 11pt \"Calibri\";")
-        self.doubleSpinBox_VE_TV.setObjectName("doubleSpinBox_VE_TV")
-        self.gridLayout.addWidget(self.doubleSpinBox_VE_TV, 3, 10, 1, 1)
+        self.doubleSpinBox_VE_RA = QtWidgets.QDoubleSpinBox(self.tab_1)
+        self.doubleSpinBox_VE_RA.setStyleSheet("background-color: rgb(35, 35, 35);\n"
+                                                "color: rgb(255, 210, 119);\n"
+                                                "selection-color: rgb(237, 85, 59);\n"
+                                                "selection-background-color: rgb(33, 57, 86);\n"
+                                                "font: 11pt \"Calibri\";")
+        self.doubleSpinBox_VE_RA.setObjectName("doubleSpinBox_VE_RA")
+        self.gridLayout.addWidget(self.doubleSpinBox_VE_RA, 3, 10, 1, 1)
 
         # ------------------------ PULMONARY VALVE ----------------------------
         self.label_VE_PUVA = QtWidgets.QLabel(self.tab_1)
         self.label_VE_PUVA.setStyleSheet("font: 9pt \"MS Shell Dlg 2\";\n"
-                                         "color: rgb(255,255,255);")
+                                            "color: rgb(255,255,255);")
         self.label_VE_PUVA.setObjectName("label_VE_PUVA")
         self.gridLayout.addWidget(self.label_VE_PUVA, 4, 8, 1, 1)
 
@@ -4967,7 +4966,6 @@ class Heart_para(object):
         self.label_VE_PUA.setObjectName("label_VE_PUA")
         self.gridLayout.addWidget(self.label_VE_PUA, 5, 8, 1, 1)
 
-
         self.checkBox_VE_PUA = QtWidgets.QCheckBox(self.tab_1)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -4988,15 +4986,15 @@ class Heart_para(object):
                                                 "font: 11pt \"Calibri\";")
         self.doubleSpinBox_VE_PUA.setObjectName("doubleSpinBox_VE_PUA")
         self.gridLayout.addWidget(self.doubleSpinBox_VE_PUA, 5, 10, 1, 1)
-        self.doubleSpinBox_VE_PUVA = QtWidgets.QDoubleSpinBox(self.tab_1)
-        self.doubleSpinBox_VE_PUVA.setStyleSheet("background-color: rgb(35, 35, 35);\n"
-                                                 "color: rgb(255, 210, 119);\n"
-                                                 "selection-color: rgb(237, 85, 59);\n"
-                                                 "selection-background-color: rgb(33, 57, 86);\n"
-                                                 "\n"
-                                                 "font: 11pt \"Calibri\";")
-        self.doubleSpinBox_VE_PUVA.setObjectName("doubleSpinBox_VE_PUVA")
-        self.gridLayout.addWidget(self.doubleSpinBox_VE_PUVA, 4, 10, 1, 1)
+        self.doubleSpinBox_VE_RV = QtWidgets.QDoubleSpinBox(self.tab_1)
+        self.doubleSpinBox_VE_RV.setStyleSheet("background-color: rgb(35, 35, 35);\n"
+                                                    "color: rgb(255, 210, 119);\n"
+                                                    "selection-color: rgb(237, 85, 59);\n"
+                                                    "selection-background-color: rgb(33, 57, 86);\n"
+                                                    "\n"
+                                                    "font: 11pt \"Calibri\";")
+        self.doubleSpinBox_VE_RV.setObjectName("doubleSpinBox_VE_RV")
+        self.gridLayout.addWidget(self.doubleSpinBox_VE_RV, 4, 10, 1, 1)
 
 
         # ------------------------ PULMONARY CAPILLARY ----------------------------
@@ -5021,7 +5019,7 @@ class Heart_para(object):
         self.gridLayout.addWidget(self.doubleSpinBox_VE_PUC, 6, 10, 1, 1)
         self.label_VE_CAP_2 = QtWidgets.QLabel(self.tab_1)
         self.label_VE_CAP_2.setStyleSheet("font: 9pt \"MS Shell Dlg 2\";\n"
-                                          "color: rgb(255,255,255);")
+                                            "color: rgb(255,255,255);")
         self.label_VE_CAP_2.setObjectName("label_VE_CAP_2")
         self.gridLayout.addWidget(self.label_VE_CAP_2, 6, 8, 1, 1)
 
@@ -5056,7 +5054,7 @@ class Heart_para(object):
         # ------------------------ MITRAL VALVE ----------------------------
         self.label_VE_MV = QtWidgets.QLabel(self.tab_1)
         self.label_VE_MV.setStyleSheet("font: 9pt \"MS Shell Dlg 2\";\n"
-                                       "color: rgb(255,255,255);")
+                                        "color: rgb(255,255,255);")
         self.label_VE_MV.setObjectName("label_VE_MV")
         self.gridLayout.addWidget(self.label_VE_MV, 8, 8, 1, 1)
 
@@ -5071,20 +5069,20 @@ class Heart_para(object):
         self.checkBox_VE_MV.setObjectName("checkBox_VE_MV")
         self.gridLayout.addWidget(self.checkBox_VE_MV, 8, 9, 1, 1)
 
-        self.doubleSpinBox_VE_MV = QtWidgets.QDoubleSpinBox(self.tab_1)
-        self.doubleSpinBox_VE_MV.setStyleSheet("background-color: rgb(35, 35, 35);\n"
-                                               "color: rgb(255, 210, 119);\n"
-                                               "selection-color: rgb(237, 85, 59);\n"
-                                               "selection-background-color: rgb(33, 57, 86);\n"
-                                               "\n"
-                                               "font: 11pt \"Calibri\";")
-        self.doubleSpinBox_VE_MV.setObjectName("doubleSpinBox_VE_MV")
-        self.gridLayout.addWidget(self.doubleSpinBox_VE_MV, 8, 10, 1, 1)
+        self.doubleSpinBox_VE_LA = QtWidgets.QDoubleSpinBox(self.tab_1)
+        self.doubleSpinBox_VE_LA.setStyleSheet("background-color: rgb(35, 35, 35);\n"
+                                                "color: rgb(255, 210, 119);\n"
+                                                "selection-color: rgb(237, 85, 59);\n"
+                                                "selection-background-color: rgb(33, 57, 86);\n"
+                                                "\n"
+                                                "font: 11pt \"Calibri\";")
+        self.doubleSpinBox_VE_LA.setObjectName("doubleSpinBox_VE_LA")
+        self.gridLayout.addWidget(self.doubleSpinBox_VE_LA, 8, 10, 1, 1)
         # ------------------------ AORTIC VALVE ----------------------------
 
         self.label_VE_AV = QtWidgets.QLabel(self.tab_1)
         self.label_VE_AV.setStyleSheet("font: 9pt \"MS Shell Dlg 2\";\n"
-                                       "color: rgb(255,255,255);")
+                                        "color: rgb(255,255,255);")
         self.label_VE_AV.setObjectName("label_VE_AV")
         self.gridLayout.addWidget(self.label_VE_AV, 9, 8, 1, 1)
 
@@ -5099,20 +5097,20 @@ class Heart_para(object):
         self.checkBox_VE_AV.setObjectName("checkBox_VE_AV")
         self.gridLayout.addWidget(self.checkBox_VE_AV, 9, 9, 1, 1)
 
-        self.doubleSpinBox_VE_AV = QtWidgets.QDoubleSpinBox(self.tab_1)
-        self.doubleSpinBox_VE_AV.setStyleSheet("background-color: rgb(35, 35, 35);\n"
-                                               "color: rgb(255, 210, 119);\n"
-                                               "selection-color: rgb(237, 85, 59);\n"
-                                               "selection-background-color: rgb(33, 57, 86);\n"
-                                               "\n"
-                                               "font: 11pt \"Calibri\";")
-        self.doubleSpinBox_VE_AV.setObjectName("doubleSpinBox_VE_AV")
-        self.gridLayout.addWidget(self.doubleSpinBox_VE_AV, 9, 10, 1, 1)
+        self.doubleSpinBox_VE_LV = QtWidgets.QDoubleSpinBox(self.tab_1)
+        self.doubleSpinBox_VE_LV.setStyleSheet("background-color: rgb(35, 35, 35);\n"
+                                                "color: rgb(255, 210, 119);\n"
+                                                "selection-color: rgb(237, 85, 59);\n"
+                                                "selection-background-color: rgb(33, 57, 86);\n"
+                                                "\n"
+                                                "font: 11pt \"Calibri\";")
+        self.doubleSpinBox_VE_LV.setObjectName("doubleSpinBox_VE_LV")
+        self.gridLayout.addWidget(self.doubleSpinBox_VE_LV, 9, 10, 1, 1)
 
         # -------------------------- AORTA  ----------------------------
         self.label_VE_AO = QtWidgets.QLabel(self.tab_1)
         self.label_VE_AO.setStyleSheet("font: 9pt \"MS Shell Dlg 2\";\n"
-                                       "color: rgb(255,255,255);")
+                                        "color: rgb(255,255,255);")
         self.label_VE_AO.setObjectName("label_VE_AO")
         self.gridLayout.addWidget(self.label_VE_AO, 10, 8, 1, 1)
 
@@ -5129,11 +5127,11 @@ class Heart_para(object):
 
         self.doubleSpinBox_VE_AO = QtWidgets.QDoubleSpinBox(self.tab_1)
         self.doubleSpinBox_VE_AO.setStyleSheet("background-color: rgb(35, 35, 35);\n"
-                                               "color: rgb(255, 210, 119);\n"
-                                               "selection-color: rgb(237, 85, 59);\n"
-                                               "selection-background-color: rgb(33, 57, 86);\n"
-                                               "\n"
-                                               "font: 11pt \"Calibri\";")
+                                                "color: rgb(255, 210, 119);\n"
+                                                "selection-color: rgb(237, 85, 59);\n"
+                                                "selection-background-color: rgb(33, 57, 86);\n"
+                                                "\n"
+                                                "font: 11pt \"Calibri\";")
         self.doubleSpinBox_VE_AO.setObjectName("doubleSpinBox_VE_AO")
         self.gridLayout.addWidget(self.doubleSpinBox_VE_AO, 10, 10, 1, 1)
 
@@ -5165,9 +5163,6 @@ class Heart_para(object):
         self.checkBox_VE_CAP.setObjectName("checkBox_VE_CAP")
         self.gridLayout.addWidget(self.checkBox_VE_CAP, 11, 9, 1, 1)
 
-        # =====================SPACER ITEM=====================
-        # spacerItem3 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
-        # self.gridLayout.addItem(spacerItem3, 5, 7, 1, 1)
         # ===ADD TAB WIDGET TO THE WINDOW======================
         self.tabWidget.addTab(self.tab_0, "")
         self.tabWidget.addTab(self.tab_1, "")
@@ -5239,7 +5234,69 @@ class Heart_para(object):
         self.checkBox_VE_MV.clicked.connect(self.enable)
         self.checkBox_VE_AV.clicked.connect(self.enable)
         self.checkBox_VE_CAP.clicked.connect(self.enable)
+        #DoubleSpinBox Decimal points
+        # =============Bernouills Resistance
+        self.doubleSpinBox_BR_MV.setDecimals(8)
+        self.doubleSpinBox_BR_PV.setDecimals(8)
+        self.doubleSpinBox_BR_AV.setDecimals(8)
+        self.doubleSpinBox_BR_TV.setDecimals(8)
+        # =========COMPLIANCE
+        self.doubleSpinBox_CMP_CAP.setDecimals(8)
+        self.doubleSpinBox_CMP_ART.setDecimals(8)
+        self.doubleSpinBox_CMP_AO.setDecimals(8)
+        self.doubleSpinBox_CMP_VC.setDecimals(8)
+        self.doubleSpinBox_CMP_VCO.setDecimals(8)
+        # ==========ELASTANCE
+        self.doubleSpinBox_ELA_PUV.setDecimals(8)
+        self.doubleSpinBox_ELA_PUA.setDecimals(8)
+        self.doubleSpinBox_ELA_PUC.setDecimals(8)
+        self.doubleSpinBox_ELA_LVb.setDecimals(8)
+        self.doubleSpinBox_ELA_RAa.setDecimals(8)
+        self.doubleSpinBox_ELA_RAb.setDecimals(8)
+        self.doubleSpinBox_ELA_RVa.setDecimals(8)
+        self.doubleSpinBox_ELA_RVb.setDecimals(8)
+        self.doubleSpinBox_ELA_LAa.setDecimals(8)
+        self.doubleSpinBox_ELA_LAb.setDecimals(8)
+        self.doubleSpinBox_ELA_LVa.setDecimals(8)
+        # ==========INDUCTANCE
+        self.doubleSpinBox_IND_VI.setDecimals(8)
+        self.doubleSpinBox_IND_VC.setDecimals(8)
+        self.doubleSpinBox_IND_TV.setDecimals(8)
+        self.doubleSpinBox_IND_PUVA.setDecimals(8)
+        self.doubleSpinBox_IND_PUA.setDecimals(8)
+        self.doubleSpinBox_IND_PUC.setDecimals(8)
+        self.doubleSpinBox_IND_PUV.setDecimals(8)
+        self.doubleSpinBox_IND_MV.setDecimals(8)
+        self.doubleSpinBox_IND_AV.setDecimals(8)
+        self.doubleSpinBox_IND_AO.setDecimals(8)
+        self.doubleSpinBox_IND_CAP.setDecimals(8)
+        # ===========RESISTANCE
+        self.doubleSpinBox_RES_VI.setDecimals(8)
+        self.doubleSpinBox_RES_VC.setDecimals(8)
+        self.doubleSpinBox_RES_TV.setDecimals(8)
+        self.doubleSpinBox_RES_PUVA.setDecimals(8)
+        self.doubleSpinBox_RES_PUA.setDecimals(8)
+        self.doubleSpinBox_RES_PUC.setDecimals(8)
+        self.doubleSpinBox_RES_PUV.setDecimals(8)
+        self.doubleSpinBox_RES_MV.setDecimals(8)
+        self.doubleSpinBox_RES_AV.setDecimals(8)
+        self.doubleSpinBox_RES_AO.setDecimals(8)
+        self.doubleSpinBox_RES_CAP.setDecimals(8)
+        # ==========VISCO ELASTANCE
+        self.doubleSpinBox_VE_VI.setDecimals(8)
+        self.doubleSpinBox_VE_VC.setDecimals(8)
+        self.doubleSpinBox_VE_RA.setDecimals(8)             
+        self.doubleSpinBox_VE_RV.setDecimals(8)                       
+        self.doubleSpinBox_VE_PUA.setDecimals(8)
+        self.doubleSpinBox_VE_PUC.setDecimals(8)
+        self.doubleSpinBox_VE_PUV.setDecimals(8)
+        self.doubleSpinBox_VE_LA.setDecimals(8)             
+        self.doubleSpinBox_VE_LV.setDecimals(8)             
+        self.doubleSpinBox_VE_AO.setDecimals(8)
+        self.doubleSpinBox_VE_CAP.setDecimals(8)
+        
 
+    #Funtion for assigning the element name
     def retranslateUi(self, widget_1):
         _translate = QtCore.QCoreApplication.translate
         widget_1.setWindowTitle(_translate("widget_1", "HEART PARAMETERS"))
@@ -5307,6 +5364,7 @@ class Heart_para(object):
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_1), _translate("widget_1", "Parameters-2"))
         self.tabWidget.setTabToolTip(self.tabWidget.indexOf(self.tab_1), _translate("widget_1", "Parameters List"))
 
+    # Function to enable or disable the textbox
     def enable(self):
         # Bernouli's Resistance
         if self.checkBox_BR_MV.isChecked():
@@ -5538,14 +5596,14 @@ class Heart_para(object):
             self.doubleSpinBox_VE_VC.setEnabled(False)
 
         if self.checkBox_VE_TV.isChecked():
-            self.doubleSpinBox_VE_TV.setEnabled(True)
+            self.doubleSpinBox_VE_RA.setEnabled(True)
         else:
-            self.doubleSpinBox_VE_TV.setEnabled(False)
+            self.doubleSpinBox_VE_RA.setEnabled(False)
 
         if self.checkBox_VE_PUVA.isChecked():
-            self.doubleSpinBox_VE_PUVA.setEnabled(True)
+            self.doubleSpinBox_VE_RV.setEnabled(True)
         else:
-            self.doubleSpinBox_VE_PUVA.setEnabled(False)
+            self.doubleSpinBox_VE_RV.setEnabled(False)
 
         if self.checkBox_VE_PUA.isChecked():
             self.doubleSpinBox_VE_PUA.setEnabled(True)
@@ -5563,14 +5621,14 @@ class Heart_para(object):
             self.doubleSpinBox_VE_PUV.setEnabled(False)
 
         if self.checkBox_VE_MV.isChecked():
-            self.doubleSpinBox_VE_MV.setEnabled(True)
+            self.doubleSpinBox_VE_LA.setEnabled(True)
         else:
-            self.doubleSpinBox_VE_MV.setEnabled(False)
+            self.doubleSpinBox_VE_LA.setEnabled(False)
 
         if self.checkBox_VE_AV.isChecked():
-            self.doubleSpinBox_VE_AV.setEnabled(True)
+            self.doubleSpinBox_VE_LV.setEnabled(True)
         else:
-            self.doubleSpinBox_VE_AV.setEnabled(False)
+            self.doubleSpinBox_VE_LV.setEnabled(False)
 
         if self.checkBox_VE_AO.isChecked():
             self.doubleSpinBox_VE_AO.setEnabled(True)
@@ -5582,15 +5640,16 @@ class Heart_para(object):
         else:
             self.doubleSpinBox_VE_CAP.setEnabled(False)
 
+    #Funtion for OK Button
     def clicked(self):
         global cda_dat
         path = os.path.join("DBS", "bloodsim.sqlite")
         connection = create_connection(path)
         css = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-              0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        
         # BERNOUL'S RESISTANCE
         BR_MV = self.doubleSpinBox_BR_MV.value()
-
         BR_PV = self.doubleSpinBox_BR_PV.value()
         BR_AV = self.doubleSpinBox_BR_AV.value()
         BR_TV = self.doubleSpinBox_BR_TV.value()
@@ -5644,167 +5703,165 @@ class Heart_para(object):
         # VISCO ELASTANCE
         VE_VI = self.doubleSpinBox_VE_VI.value()
         VE_VC = self.doubleSpinBox_VE_VC.value()
-        VE_TV = self.doubleSpinBox_VE_TV.value()
-        VE_PUVA = self.doubleSpinBox_VE_PUVA.value()
+        VE_TV = self.doubleSpinBox_VE_RA.value()
+        VE_PUVA = self.doubleSpinBox_VE_RV.value()
         VE_PUA = self.doubleSpinBox_VE_PUA.value()
         VE_PUC = self.doubleSpinBox_VE_PUC.value()
         VE_PUV = self.doubleSpinBox_VE_PUV.value()
-        VE_MV = self.doubleSpinBox_VE_MV.value()
-        VE_AV = self.doubleSpinBox_VE_AV.value()
+        VE_MV = self.doubleSpinBox_VE_LA.value()
+        VE_AV = self.doubleSpinBox_VE_LV.value()
         VE_AO = self.doubleSpinBox_VE_AO.value()
         VE_CAP = self.doubleSpinBox_VE_CAP.value()
+
         # Type conversion
-        BR_MV = int(BR_MV)
-        BR_PV = int(BR_PV)
-        BR_AV = int(BR_AV)
-        BR_TV = int(BR_AV)
-        CMP_CAP = int(CMP_CAP) 
-        CMP_ART = int(CMP_ART) 
-        CMP_AO = int(CMP_AO) 
-        CMP_VC = int(CMP_VC) 
-        CMP_VCO  = int(CMP_VCO)
-        ELA_PUV = int(ELA_PUV) 
-        ELA_PUA = int(ELA_PUA) 
-        ELA_PUC = int(ELA_PUC) 
-        ELA_LVb = int(ELA_LVb) 
-        ELA_RAa = int(ELA_RAa)
-        ELA_RAb = int(ELA_RAb) 
-        ELA_RVa = int(ELA_RVa) 
-        ELA_RVb = int(ELA_RVb) 
-        ELA_LAa = int(ELA_LAa) 
-        ELA_LAb = int(ELA_LAb) 
-        ELA_LVa  = int(ELA_LVa)
+        BR_MV    =  int(BR_MV)
+        BR_PV    =  int(BR_PV)
+        BR_AV    =  int(BR_AV)
+        BR_TV    =  int(BR_AV)
+        CMP_CAP  =  int(CMP_CAP) 
+        CMP_ART  =  int(CMP_ART) 
+        CMP_AO   =  int(CMP_AO) 
+        CMP_VC   =  int(CMP_VC) 
+        CMP_VCO  =  int(CMP_VCO)
+        ELA_PUV  =  int(ELA_PUV) 
+        ELA_PUA  =  int(ELA_PUA) 
+        ELA_PUC  =  int(ELA_PUC) 
+        ELA_LVb  =  int(ELA_LVb) 
+        ELA_RAa  =  int(ELA_RAa)
+        ELA_RAb  =  int(ELA_RAb) 
+        ELA_RVa  =  int(ELA_RVa) 
+        ELA_RVb  =  int(ELA_RVb) 
+        ELA_LAa  =  int(ELA_LAa) 
+        ELA_LAb  =  int(ELA_LAb) 
+        ELA_LVa  =  int(ELA_LVa)
+        IND_VI   =  int(IND_VI)
+        IND_VC   =  int(IND_VC)
+        IND_TV   =  int(IND_TV)
+        IND_PUVA =  int(IND_PUVA)
+        IND_PUA  =  int(IND_PUA)
+        IND_PUC  =  int(IND_PUC)
+        IND_PUV  =  int(IND_PUV)
+        IND_MV   =  int(IND_MV)
+        IND_AV   =  int(IND_AV)
+        IND_AO   =  int(IND_AO)
+        IND_CAP  =  int(IND_CAP)
+        RES_VI   =  int(RES_VI) 
+        RES_VC   =  int(RES_VC) 
+        RES_TV   =  int(RES_TV) 
+        RES_PUVA =  int(RES_PUVA) 
+        RES_PUA  =  int(RES_PUA) 
+        RES_PUC  =  int(RES_PUC)
+        RES_PUV  =  int(RES_PUV) 
+        RES_MV   =  int(RES_MV)
+        RES_AV   =  int(RES_AV) 
+        RES_AO   =  int(RES_AO) 
+        RES_CAP  =  int(RES_CAP)
+        VE_VI    =  int(VE_VI)
+        VE_VC    =  int(VE_VC)
+        VE_TV    =  int(VE_TV)
+        VE_PUVA  =  int(VE_PUVA) 
+        VE_PUA   =  int(VE_PUA) 
+        VE_PUC   =  int(VE_PUC)
+        VE_PUV   =  int(VE_PUV) 
+        VE_MV    =  int(VE_MV) 
+        VE_AV    =  int(VE_AV) 
+        VE_AO    =  int(VE_AO) 
+        VE_CAP   =  int(VE_CAP)
 
-        IND_VI = int(IND_VI)
-        IND_VC = int(IND_VC)
-        IND_TV = int(IND_TV)
-        IND_PUVA = int(IND_PUVA)
-        IND_PUA = int(IND_PUA)
-        IND_PUC = int(IND_PUC)
-        IND_PUV = int(IND_PUV)
-        IND_MV = int(IND_MV)
-        IND_AV = int(IND_AV)
-        IND_AO = int(IND_AO)
-        IND_CAP = int(IND_CAP)
-
-        RES_VI = int(RES_VI) 
-        RES_VC = int(RES_VC) 
-        RES_TV = int(RES_TV) 
-        RES_PUVA = int(RES_PUVA) 
-        RES_PUA = int(RES_PUA) 
-        RES_PUC = int(RES_PUC)
-        RES_PUV = int(RES_PUV) 
-        RES_MV = int(RES_MV)
-        RES_AV = int(RES_AV) 
-        RES_AO = int(RES_AO) 
-        RES_CAP = int(RES_CAP)
-
-        VE_VI = int(VE_VI)
-        VE_VC = int(VE_VC)
-        VE_TV = int(VE_TV)
-        VE_PUVA = int(VE_PUVA) 
-        VE_PUA = int(VE_PUA) 
-        VE_PUC = int(VE_PUC)
-        VE_PUV = int(VE_PUV) 
-        VE_MV = int(VE_MV) 
-        VE_AV = int(VE_AV) 
-        VE_AO = int(VE_AO) 
-        VE_CAP = int(VE_CAP)
-        
-        # VARIABLES VALUE
-        heart_br_para = [BR_MV,BR_PV, BR_AV, BR_TV]
-        heart_cmp_para = [CMP_CAP, CMP_ART, CMP_AO, CMP_VC, CMP_VCO]
-        heart_ela_para = [ELA_PUV, ELA_PUA, ELA_PUC, ELA_LVb, ELA_RAa,
-                          ELA_RAb, ELA_RVa, ELA_RVb, ELA_LAa, ELA_LAb, ELA_LVa]
-
-        heart_ind_para = [IND_VI,IND_VC,IND_TV, IND_PUVA,IND_PUA, IND_PUC,
-                               IND_PUV, IND_MV, IND_AV, IND_AO, IND_CAP]
-
-        heart_res_para = [RES_VI, RES_VC, RES_TV, RES_PUVA, RES_PUA, RES_PUC,
-                               RES_PUV, RES_MV, RES_AV, RES_AO, RES_CAP]
-        heart_ve_para = [VE_VI, VE_VC, VE_TV, VE_PUVA, VE_PUA, VE_PUC,
-                              VE_PUV, VE_MV, VE_AV, VE_AO, VE_CAP]
-
-        cda_dat = [ heart_br_para, heart_cmp_para, heart_ela_para, heart_ind_para, heart_res_para, heart_ve_para ] 
-        
         query = "Update CARDI set val = ? where id = ?"
         query_list = [(BR_MV, 0), (BR_PV, 1), (BR_AV, 2), (BR_TV, 3), \
-                      (CMP_CAP, 4), (CMP_ART, 5), (CMP_AO, 6), (CMP_VC, 7), (CMP_VCO, 8), \
-                      (ELA_PUV, 9), (ELA_PUA, 10), (ELA_PUC, 11), (ELA_LVb, 12), (ELA_RAa, 13), \
-                      (ELA_RAb, 14), (ELA_RVa, 15), (ELA_RVb, 16), (ELA_LAa, 17), (ELA_LAb, 18), (ELA_LVa, 19), \
-                      (IND_VI, 20), (IND_VC, 21), (IND_TV, 22), (IND_PUVA, 23), (IND_PUA, 24), \
-                      (IND_PUC, 25), (IND_PUV, 26), (IND_MV, 27), (IND_AV, 28), (IND_AO, 29), (IND_CAP, 30), \
-                      (RES_VI, 31), (RES_VC, 32), (RES_TV, 33), (RES_PUVA, 34), (RES_PUA, 35), (RES_PUC, 36), \
-                      (RES_PUV, 37), (RES_MV, 38), (RES_AV, 39), (RES_AO, 40), (RES_CAP, 41), \
-                      (VE_VI, 42), (VE_VC, 43), (VE_TV, 44), (VE_PUVA, 45), (VE_PUA, 46), (VE_PUC, 47), \
-                      (VE_PUV, 48), (VE_MV, 49), (VE_AV, 50), (VE_AO, 51), (VE_CAP, 52)]
+                        (CMP_CAP, 4), (CMP_ART, 5), (CMP_AO, 6), (CMP_VC, 7), (CMP_VCO, 8), \
+                        (ELA_PUV, 9), (ELA_PUA, 10), (ELA_PUC, 11), (ELA_LVb, 12), (ELA_RAa, 13), \
+                        (ELA_RAb, 14), (ELA_RVa, 15), (ELA_RVb, 16), (ELA_LAa, 17), (ELA_LAb, 18), (ELA_LVa, 19), \
+                        (IND_VI, 20), (IND_VC, 21), (IND_TV, 22), (IND_PUVA, 23), (IND_PUA, 24), \
+                        (IND_PUC, 25), (IND_PUV, 26), (IND_MV, 27), (IND_AV, 28), (IND_AO, 29), (IND_CAP, 30), \
+                        (RES_VI, 31), (RES_VC, 32), (RES_TV, 33), (RES_PUVA, 34), (RES_PUA, 35), (RES_PUC, 36), \
+                        (RES_PUV, 37), (RES_MV, 38), (RES_AV, 39), (RES_AO, 40), (RES_CAP, 41), \
+                        (VE_VI, 42), (VE_VC, 43), (VE_TV, 44), (VE_PUVA, 45), (VE_PUA, 46), (VE_PUC, 47), \
+                        (VE_PUV, 48), (VE_MV, 49), (VE_AV, 50), (VE_AO, 51), (VE_CAP, 52)]
         execute_many_query(connection, query, query_list)
+
+        # VARIABLES VALUE
+        heart_br_para  = [BR_MV,BR_PV, BR_AV, BR_TV]
+        heart_cmp_para = [CMP_CAP, CMP_ART, CMP_AO, CMP_VC, CMP_VCO]
+        heart_ela_para = [ELA_PUV, ELA_PUA, ELA_PUC, ELA_LVb, ELA_RAa,
+                            ELA_RAb, ELA_RVa, ELA_RVb, ELA_LAa, ELA_LAb, ELA_LVa]
+
+        heart_ind_para = [IND_VI,IND_VC,IND_TV, IND_PUVA,IND_PUA, IND_PUC,
+                                IND_PUV, IND_MV, IND_AV, IND_AO, IND_CAP]
+
+        heart_res_para = [RES_VI, RES_VC, RES_TV, RES_PUVA, RES_PUA, RES_PUC,
+                                RES_PUV, RES_MV, RES_AV, RES_AO, RES_CAP]
+        heart_ve_para  = [VE_VI, VE_VC, VE_TV, VE_PUVA, VE_PUA, VE_PUC,
+                                VE_PUV, VE_MV, VE_AV, VE_AO, VE_CAP]
+
+        # cda_dat var for argument passing
+        cda_dat = [ heart_br_para, heart_cmp_para, heart_ela_para, heart_ind_para, heart_res_para, heart_ve_para ] 
 
         # CHECK STATE
         # BERNOUL'S RESISTANCE
-        css[0] = BR_MV = self.doubleSpinBox_BR_MV.isEnabled()
-        css[1] = BR_PV = self.doubleSpinBox_BR_PV.isEnabled()
-        css[2] = BR_AV = self.doubleSpinBox_BR_AV.isEnabled()
-        css[3] = BR_TV = self.doubleSpinBox_BR_TV.isEnabled()
+        css[0] = self.doubleSpinBox_BR_MV.isEnabled()
+        css[1] = self.doubleSpinBox_BR_PV.isEnabled()
+        css[2] = self.doubleSpinBox_BR_AV.isEnabled()
+        css[3] = self.doubleSpinBox_BR_TV.isEnabled()
 
         # COMPLIANCE
-        css[4] = CMP_CAP = self.doubleSpinBox_CMP_CAP.isEnabled()
-        css[5] = CMP_ART = self.doubleSpinBox_CMP_ART.isEnabled()
-        css[6] = CMP_AO = self.doubleSpinBox_CMP_AO.isEnabled()
-        css[7] = CMP_VC = self.doubleSpinBox_CMP_VC.isEnabled()
-        css[8] = CMP_VCO = self.doubleSpinBox_CMP_VCO.isEnabled()
+        css[4] = self.doubleSpinBox_CMP_CAP.isEnabled()
+        css[5] = self.doubleSpinBox_CMP_ART.isEnabled()
+        css[6] = self.doubleSpinBox_CMP_AO.isEnabled()
+        css[7] = self.doubleSpinBox_CMP_VC.isEnabled()
+        css[8] = self.doubleSpinBox_CMP_VCO.isEnabled()
 
         # ELASTANCE
-        css[9] = ELA_PUV = self.doubleSpinBox_ELA_PUV.isEnabled()
-        css[10] = ELA_PUA = self.doubleSpinBox_ELA_PUA.isEnabled()
-        css[11] = ELA_PUC = self.doubleSpinBox_ELA_PUC.isEnabled()
-        css[12] = ELA_LVb = self.doubleSpinBox_ELA_LVb.isEnabled()
-        css[13] = ELA_RAa = self.doubleSpinBox_ELA_RAa.isEnabled()
-        css[14] = ELA_RAb = self.doubleSpinBox_ELA_RAb.isEnabled()
-        css[15] = ELA_RVa = self.doubleSpinBox_ELA_RVa.isEnabled()
-        css[16] = ELA_RVb = self.doubleSpinBox_ELA_RVb.isEnabled()
-        css[17] = ELA_LAa = self.doubleSpinBox_ELA_LAa.isEnabled()
-        css[18] = ELA_LAb = self.doubleSpinBox_ELA_LAb.isEnabled()
-        css[19] = ELA_LVa = self.doubleSpinBox_ELA_LVa.isEnabled()
-
+        css[9] = self.doubleSpinBox_ELA_PUV.isEnabled()
+        css[10] = self.doubleSpinBox_ELA_PUA.isEnabled()
+        css[11] = self.doubleSpinBox_ELA_PUC.isEnabled()
+        css[12] = self.doubleSpinBox_ELA_LVb.isEnabled()
+        css[13] = self.doubleSpinBox_ELA_RAa.isEnabled()
+        css[14] = self.doubleSpinBox_ELA_RAb.isEnabled()
+        css[15] = self.doubleSpinBox_ELA_RVa.isEnabled()
+        css[16] = self.doubleSpinBox_ELA_RVb.isEnabled()
+        css[17] = self.doubleSpinBox_ELA_LAa.isEnabled()
+        css[18] = self.doubleSpinBox_ELA_LAb.isEnabled()
+        css[19] = self.doubleSpinBox_ELA_LVa.isEnabled()
         # INDUCTANCE
-        css[20] = IND_VI = self.doubleSpinBox_IND_VI.isEnabled()
-        css[21] = IND_VC = self.doubleSpinBox_IND_VC.isEnabled()
-        css[22] = IND_TV = self.doubleSpinBox_IND_TV.isEnabled()
-        css[23] = IND_PUVA = self.doubleSpinBox_IND_PUVA.isEnabled()
-        css[24] = IND_PUA = self.doubleSpinBox_IND_PUA.isEnabled()
-        css[25] = IND_PUC = self.doubleSpinBox_IND_PUC.isEnabled()
-        css[26] = IND_PUV = self.doubleSpinBox_IND_PUV.isEnabled()
-        css[27] = IND_MV = self.doubleSpinBox_IND_MV.isEnabled()
-        css[28] = IND_AV = self.doubleSpinBox_IND_AV.isEnabled()
-        css[29] = IND_AO = self.doubleSpinBox_IND_AO.isEnabled()
-        css[30] = IND_CAP = self.doubleSpinBox_IND_CAP.isEnabled()
+        css[20] = self.doubleSpinBox_IND_VI.isEnabled()
+        css[21] = self.doubleSpinBox_IND_VC.isEnabled()
+        css[22] = self.doubleSpinBox_IND_TV.isEnabled()
+        css[23] = self.doubleSpinBox_IND_PUVA.isEnabled()
+        css[24] = self.doubleSpinBox_IND_PUA.isEnabled()
+        css[25] = self.doubleSpinBox_IND_PUC.isEnabled()
+        css[26] = self.doubleSpinBox_IND_PUV.isEnabled()
+        css[27] = self.doubleSpinBox_IND_MV.isEnabled()
+        css[28] = self.doubleSpinBox_IND_AV.isEnabled()
+        css[29] = self.doubleSpinBox_IND_AO.isEnabled()
+        css[30] = self.doubleSpinBox_IND_CAP.isEnabled()
 
         # RESISTANCE
-        css[31] = RES_VI = self.doubleSpinBox_RES_VI.isEnabled()
-        css[32] = RES_VC = self.doubleSpinBox_RES_VC.isEnabled()
-        css[33] = RES_TV = self.doubleSpinBox_RES_TV.isEnabled()
-        css[34] = RES_PUVA = self.doubleSpinBox_RES_PUVA.isEnabled()
-        css[35] = RES_PUA = self.doubleSpinBox_RES_PUA.isEnabled()
-        css[36] = RES_PUC = self.doubleSpinBox_RES_PUC.isEnabled()
-        css[37] = RES_PUV = self.doubleSpinBox_RES_PUV.isEnabled()
-        css[38] = RES_MV = self.doubleSpinBox_RES_MV.isEnabled()
-        css[39] = RES_AV = self.doubleSpinBox_RES_AV.isEnabled()
-        css[40] = RES_AO = self.doubleSpinBox_RES_AO.isEnabled()
-        css[41] = RES_CAP = self.doubleSpinBox_RES_CAP.isEnabled()
+        css[31] = self.doubleSpinBox_RES_VI.isEnabled()
+        css[32] = self.doubleSpinBox_RES_VC.isEnabled()
+        css[33] = self.doubleSpinBox_RES_TV.isEnabled()
+        css[34] = self.doubleSpinBox_RES_PUVA.isEnabled()
+        css[35] = self.doubleSpinBox_RES_PUA.isEnabled()
+        css[36] = self.doubleSpinBox_RES_PUC.isEnabled()
+        css[37] = self.doubleSpinBox_RES_PUV.isEnabled()
+        css[38] = self.doubleSpinBox_RES_MV.isEnabled()
+        css[39] = self.doubleSpinBox_RES_AV.isEnabled()
+        css[40] = self.doubleSpinBox_RES_AO.isEnabled()
+        css[41] = self.doubleSpinBox_RES_CAP.isEnabled()
 
         # VISCO ELASTANCE
-        css[42] = VE_VI = self.doubleSpinBox_VE_VI.isEnabled()
-        css[43] = VE_VC = self.doubleSpinBox_VE_VC.isEnabled()
-        css[44] = VE_TV = self.doubleSpinBox_VE_TV.isEnabled()
-        css[45] = VE_PUVA = self.doubleSpinBox_VE_PUVA.isEnabled()
-        css[46] = VE_PUA = self.doubleSpinBox_VE_PUA.isEnabled()
-        css[47] = VE_PUC = self.doubleSpinBox_VE_PUC.isEnabled()
-        css[48] = VE_PUV = self.doubleSpinBox_VE_PUV.isEnabled()
-        css[49] = VE_MV = self.doubleSpinBox_VE_MV.isEnabled()
-        css[50] = VE_AV = self.doubleSpinBox_VE_AV.isEnabled()
-        css[51] = VE_AO = self.doubleSpinBox_VE_AO.isEnabled()
-        css[52] = VE_CAP = self.doubleSpinBox_VE_CAP.isEnabled()
+        css[42] = self.doubleSpinBox_VE_VI.isEnabled()
+        css[43] = self.doubleSpinBox_VE_VC.isEnabled()
+        css[44] = self.doubleSpinBox_VE_RA.isEnabled()
+        css[45] = self.doubleSpinBox_VE_RV.isEnabled()
+        css[46] = self.doubleSpinBox_VE_PUA.isEnabled()
+        css[47] = self.doubleSpinBox_VE_PUC.isEnabled()
+        css[48] = self.doubleSpinBox_VE_PUV.isEnabled()
+        css[49] = self.doubleSpinBox_VE_LA.isEnabled()
+        css[50] = self.doubleSpinBox_VE_LV.isEnabled()
+        css[51] = self.doubleSpinBox_VE_AO.isEnabled()
+        css[52] = self.doubleSpinBox_VE_CAP.isEnabled()
         
         for i in range(53):
             if css[i] == True:
@@ -5814,38 +5871,35 @@ class Heart_para(object):
         
         query = "Update CARDI set state = ? where id = ?"
         query_list = [(css[0], 0), (css[1], 1), (css[2], 2), (css[3], 3), (css[4], 4), (css[5], 5), (css[6], 6),\
-                      (css[7], 7), (css[8], 8), (css[9], 9), (css[10], 10), (css[11], 11), (css[12], 12), (css[13], 13),\
-                      (css[14], 14), (css[15], 15), (css[16], 16), (css[17], 17), (css[18], 18), (css[19], 19),\
-                      (css[20], 20),(css[21], 21),(css[22], 22),(css[23], 23),(css[24], 24),(css[25], 25),(css[26], 26),\
-                      (css[27], 27),(css[28], 28),(css[29], 29),(css[30], 30),(css[31], 31),(css[32], 32),\
-                      (css[33], 33),(css[34], 34),(css[35], 35),(css[36], 36),(css[37], 37),(css[38], 38),(css[39], 39),\
-                      (css[40], 40),(css[41], 41),(css[42], 42),(css[43], 43),(css[44], 44),(css[45], 45),(css[46], 46),\
-                      (css[47], 47),(css[48], 48),(css[49], 49),(css[50], 50),(css[51], 51),(css[52], 52)]
+                        (css[7], 7), (css[8], 8), (css[9], 9), (css[10], 10), (css[11], 11), (css[12], 12), (css[13], 13),\
+                        (css[14], 14), (css[15], 15), (css[16], 16), (css[17], 17), (css[18], 18), (css[19], 19),\
+                        (css[20], 20),(css[21], 21),(css[22], 22),(css[23], 23),(css[24], 24),(css[25], 25),(css[26], 26),\
+                        (css[27], 27),(css[28], 28),(css[29], 29),(css[30], 30),(css[31], 31),(css[32], 32),\
+                        (css[33], 33),(css[34], 34),(css[35], 35),(css[36], 36),(css[37], 37),(css[38], 38),(css[39], 39),\
+                        (css[40], 40),(css[41], 41),(css[42], 42),(css[43], 43),(css[44], 44),(css[45], 45),(css[46], 46),\
+                        (css[47], 47),(css[48], 48),(css[49], 49),(css[50], 50),(css[51], 51),(css[52], 52)]
         execute_many_query(connection, query, query_list)
         self.widget_1.close()
 
+    #Funtion for initialising the widgets state/value
     def state(self):
         path = os.path.join("DBS", "bloodsim.sqlite")
         connection = create_connection(path)
-
         C = []
         query = "SELECT val FROM CARDI"
         bdat = execute_read_query(connection, query)
         C = sum(bdat, ())
-
-        # =============UPDATE BOX VALUE
+        # =============UPDATE TEXTBOX VALUE
         self.doubleSpinBox_BR_MV.setValue(C[0])
         self.doubleSpinBox_BR_PV.setValue(C[1])
         self.doubleSpinBox_BR_AV.setValue(C[2])
         self.doubleSpinBox_BR_TV.setValue(C[3])
-
         # =========COMPLIANCE
         self.doubleSpinBox_CMP_CAP.setValue(C[4])
         self.doubleSpinBox_CMP_ART.setValue(C[5])
         self.doubleSpinBox_CMP_AO.setValue(C[6])
         self.doubleSpinBox_CMP_VC.setValue(C[7])
         self.doubleSpinBox_CMP_VCO.setValue(C[8])
-
         # ==========ELASTANCE
         self.doubleSpinBox_ELA_PUV.setValue(C[9])
         self.doubleSpinBox_ELA_PUA.setValue(C[10])
@@ -5858,7 +5912,6 @@ class Heart_para(object):
         self.doubleSpinBox_ELA_LAa.setValue(C[17])
         self.doubleSpinBox_ELA_LAb.setValue(C[18])
         self.doubleSpinBox_ELA_LVa.setValue(C[19])
-
         # ==========INDUCTANCE
         self.doubleSpinBox_IND_VI.setValue(C[20])
         self.doubleSpinBox_IND_VC.setValue(C[21])
@@ -5871,7 +5924,6 @@ class Heart_para(object):
         self.doubleSpinBox_IND_AV.setValue(C[28])
         self.doubleSpinBox_IND_AO.setValue(C[29])
         self.doubleSpinBox_IND_CAP.setValue(C[30])
-
         # ===========RESISTANCE
         self.doubleSpinBox_RES_VI.setValue(C[31])
         self.doubleSpinBox_RES_VC.setValue(C[32])
@@ -5884,17 +5936,16 @@ class Heart_para(object):
         self.doubleSpinBox_RES_AV.setValue(C[39])
         self.doubleSpinBox_RES_AO.setValue(C[40])
         self.doubleSpinBox_RES_CAP.setValue(C[41])
-
         # ==========VISCO ELASTANCE
         self.doubleSpinBox_VE_VI.setValue(C[42])
         self.doubleSpinBox_VE_VC.setValue(C[43])
-        self.doubleSpinBox_VE_TV.setValue(C[44])
-        self.doubleSpinBox_VE_PUVA.setValue(C[45])
+        self.doubleSpinBox_VE_RA.setValue(C[44])
+        self.doubleSpinBox_VE_RV.setValue(C[45])
         self.doubleSpinBox_VE_PUA.setValue(C[46])
         self.doubleSpinBox_VE_PUC.setValue(C[47])
         self.doubleSpinBox_VE_PUV.setValue(C[48])
-        self.doubleSpinBox_VE_MV.setValue(C[49])
-        self.doubleSpinBox_VE_AV.setValue(C[50])
+        self.doubleSpinBox_VE_LA.setValue(C[49])
+        self.doubleSpinBox_VE_LV.setValue(C[50])
         self.doubleSpinBox_VE_AO.setValue(C[51])
         self.doubleSpinBox_VE_CAP.setValue(C[52])
 
@@ -5958,13 +6009,13 @@ class Heart_para(object):
         # ==========VISCO ELASTANCE
         self.doubleSpinBox_VE_VI.setEnabled(C1[42])
         self.doubleSpinBox_VE_VC.setEnabled(C1[43])
-        self.doubleSpinBox_VE_TV.setEnabled(C1[44])
-        self.doubleSpinBox_VE_PUVA.setEnabled(C1[45])
+        self.doubleSpinBox_VE_RA.setEnabled(C1[44])
+        self.doubleSpinBox_VE_RV.setEnabled(C1[45])
         self.doubleSpinBox_VE_PUA.setEnabled(C1[46])
         self.doubleSpinBox_VE_PUC.setEnabled(C1[47])
         self.doubleSpinBox_VE_PUV.setEnabled(C1[48])
-        self.doubleSpinBox_VE_MV.setEnabled(C1[49])
-        self.doubleSpinBox_VE_AV.setEnabled(C1[50])
+        self.doubleSpinBox_VE_LA.setEnabled(C1[49])
+        self.doubleSpinBox_VE_LV.setEnabled(C1[50])
         self.doubleSpinBox_VE_AO.setEnabled(C1[51])
         self.doubleSpinBox_VE_CAP.setEnabled(C1[52])
 
