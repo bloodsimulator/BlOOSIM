@@ -584,25 +584,6 @@ def lumped(HR, ncyc, dt, *param):
 
     t = np.arange(0, 4.8, dt)
     T = t
-    # Pa_1 = MyResult1[:ntotal, 23]
-    # F_1 = MyResult1[:ntotal, 22]
-    #print('hello')
+ 
 
     return MyResult1, T
-
-
-if __name__ == "__main__":
-    heart_br_para = [0.000016,0.000025, 0.000025, 0.000016]
-    heart_cmp_para = [0.06, 0.3, 0.9, 30.0, 100.0]
-    heart_ela_para = [0.0200,0.0200, 0.0200, 0.06, 0.055, 0.06, 0.52, 0.043, 0.07, 0.075, 2.87]
-    heart_ind_para = [0.0005,0.0005,0.0002, 0.0005,0.005, 0.0005,
-                            0.0005, 0.0002, 0.0005, 0.015, 0.0005]
-    heart_res_para = [0.001, 0.07, 0.005, 0.005, 0.04, 0.04,
-                            0.005, 0.005, 0.005, 0.08, 0.35]
-    heart_ve_para = [0.01, 0.01, 0.01, 0.01, 0.01, 0.01,
-                            0.01, 0.01, 0.01, 0.01, 0.01]
-
-    cda_dat = [ heart_br_para, heart_cmp_para, heart_ela_para, heart_ind_para, heart_res_para, heart_ve_para ]
-
-    lumped(72, 10, 0.00015, *cda_dat)
-    print('completed')

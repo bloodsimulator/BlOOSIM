@@ -1,8 +1,12 @@
-from Mainwindow import Ui_MainWindow, Steno_para, Heart_para
-from HomeWindow import Ui_HomeWindow
-from PyQt5 import QtGui, QtCore, QtWidgets
 import os
 import sys
+
+from PyQt5 import QtCore, QtGui, QtWidgets
+
+
+from HomeWindow import Ui_HomeWindow
+from Mainwindow import Heart_para, Steno_para, Ui_MainWindow
+
 
 class Controller():
 
@@ -18,8 +22,8 @@ class Controller():
         self.HomeWindow.close()
 
     def manual(self):
-        path = os.path.join('images', 'User_Manual.pdf')
-        os.system(path)
+        path = os.path.join('Manual.pdf')
+        os.startfile(path)
 
     def Show_SecondWindow(self):
         try:

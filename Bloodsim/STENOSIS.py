@@ -35,7 +35,7 @@ def steno(M, R, G, **data):
     c0 = np.sign(c0) * (np.abs(c0)) ** (1 / 2)
     R0 =  np.true_divide(rho*c0, np.power(pi*np.multiply(np.subtract(r, D), r), 2 ))     #rho*c0./(pi*(r-D.*r).^2)
     RLCtru[:, 3] = R0 *(1+G0)/(1-G0)
-    path = os.path.join('DBS', 'RLCtru.txt')
+    path = os.path.join('Datas', 'RLCtru.txt')
     np.savetxt(path, RLCtru, delimiter=',')
 
 
