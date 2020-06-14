@@ -901,8 +901,7 @@ class Ui_MainWindow(object):
                     "blood into the pulmonary arteries around the lungs. There, fresh oxygen enters the blood stream, and the blood moves to the left side of the heart."
                     "From the lungs, blood is brought to the left atrium through the pulmonary vein, and then to the left ventricle through the mitral valve, from where it"
                     "is pumped to the rest of the body.")
-                self.label_heart.setPixmap(QtGui.QPixmap(
-                    os.path.join('images', 'heart.jpg')))
+                self.label_heart.setPixmap(QtGui.QPixmap(':/images/heart.jpg'))
             if not self.actionHeart_Parameter.isChecked():
                 self.dockWidget_3.hide()
                 self.dockWidget_2.show()
@@ -2537,6 +2536,15 @@ class Ui_MainWindow(object):
                         (0.01, 42), (0.01, 43), (0.0005, 44), (0.0005, 45), (0.01, 46), (0.01, 47), \
                         (0.01, 48), (0.0005, 49), (0.0005, 50), (0.01, 51), (0.01, 52)]
             execute_many_query(connection, query, query_list)
+
+            query = "Update STENO set val = ? where id = ?"
+            query_list = [(0, 0), (0, 1), (0, 2), (0, 3), (0, 4), (0, 5),
+                      (0, 6), (0, 7), (0, 8), (0, 9), (0, 10), (0, 11),
+                      (0, 12), (0, 13), (0, 14), (0, 15), (0, 16),
+                      (0, 17), (0, 18), (0, 19)]
+            execute_many_query(connection, query, query_list)
+
+
             self.statusbar.showMessage('RESET', msecs=8000)
 
     except Exception as e:
